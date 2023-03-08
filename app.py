@@ -2,7 +2,7 @@ from flask import Flask, render_template, request, jsonify
 app = Flask(__name__)
 
 from pymongo import MongoClient
-client = MongoClient('mongodb+srv://sparta:test@cluster0.nlfpdbt.mongodb.net/?retryWrites=true&w=majority')
+client = MongoClient('mongodb+srv://sparta:test@cluster0.vnhcwoi.mongodb.net/?retryWrites=true&w=majority')
 db = client.dbsparta
 
 import requests
@@ -18,11 +18,15 @@ def main():
 def matgo():
     return render_template('matgo.html')
 
-@app.route("/matgo", methods=["GET"])
+@app.route("/matgo/matjips", methods=["GET"])
 def matgo_get():
     # 여러개 찾기 - 예시 ( _id 값은 제외하고 출력)
-    all_comments = list(db.fan.find({},{'_id':False}))
-    return jsonify({'result': all_comments})
+    all_matjips = list(db.matjip.find({},{'_id':False}))
+    # all_comments = list(db.matjip.find({},{'_id':False})) 여기서 디테일 연결 테스트
+
+    return jsonify({'result': all_matjips})
+
+
 
 @app.route('/write')
 def write():

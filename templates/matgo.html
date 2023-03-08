@@ -439,6 +439,7 @@
         $(document).ready(function () {
             set_temp();
             set_icon();
+            show_matjip();
         });
 
         function searchToggle(obj, evt) {
@@ -537,9 +538,45 @@
                 $('#icon').append(temp_html)
             });
         }
-        //별점 마킹 모듈 프로토타입으로 생성
-        
+        //맛집list불러오기
+        function show_matjip() {
+            fetch('/matgo/matjips').then((res) => res.json()).then((data) => {
+                let rows = data['result']
+                $('#matjip-list').empty()
+                rows.forEach((a) => {
 
+                    let url = a['url']
+                    let stname = a['stname']
+                    let stintro = a['stintro']
+                    let stadd = a['stadd']
+                    let ststar = a['ststar']
+                    let comment = a['comment']
+                    let price = a['price']
+
+                    let star_repeat = '⭐'.repeat(ststar)
+
+                    let temp_html = `<div class="col">
+                                        <div class="card h-100">
+                                            <img src="${url}"
+                                                class="card-img-top" alt="...">
+                                            <div class="card-body">
+                                                <h5 class="name">${stname}</h5>
+                                                <p class="address">${stadd}</p>
+                                                <p class="address">${stintro}</p>
+                                                <p>${star_repeat}</p>
+                                                <p class="myreview">리뷰(4)<미구현></p>
+                                                <a href="matgo_list_detail.html" class="btn btn-primary">정보 더보기</a>
+                                            </div>
+                                            <div class="card-footer">
+                                                <small class="text-muted">Last updated 3 mins ago</small>
+                                            </div>
+                                        </div>
+                                    </div>`
+                    console.log(temp_html)
+                    $('#matjip-list').append(temp_html)
+                })
+            })
+        }
     </script>
 </head>
 
@@ -584,71 +621,7 @@
     </div>
     <!--목록-->
     <div class="mylist">
-        <div class="row row-cols-1 row-cols-md-4 g-4">
-            <div class="col">
-                <div class="card h-100">
-                    <img src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMzAyMTRfMjM0%2FMDAxNjc2Mzc3MDkxMDE1.ezAOynCcArbcV0KE_vvjbd3j76SI_Pt7lKpfnNRmFvwg.NLvDkNCaM8qdw9aPubYn3VgF9Arn2LjB75nfPi1QmjEg.JPEG.ley3330%2F%25BA%25C0%25BF%25EC%25C0%25CC%25C3%25FE%25C1%25FD_%25B0%25AD%25B3%25B2%25BF%25AA_%25B0%25ED%25B1%25E2%25C1%25FD_%25B0%25AD%25B3%25B2%25BF%25AA_%25BB%25EF%25B0%25E3%25BB%25EC_%25B8%25C0%25C1%25FD_%25BD%25C5%25B3%25ED%25C7%25F6%25BF%25AA_%25B8%25C0%25C1%25FD_%25B3%25C3%25B8%25E9_%25B8%25C0%25C1%25FD_%25C8%25B8%25BD%25C4%25C0%25E5%25BC%25D2_45.jpg&type=sc960_832"
-                        class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="name">봉우이층집</h5>
-                        <p class="address">서울 강남구 봉은사로18길 76 스타 팰리스</p>
-                        <p>⭐⭐⭐⭐⭐</p>
-                        <p class="myreview">또 방문하고싶은 맛!</p>
-                        <a href="/matgo_list_detail" class="btn btn-primary">정보 더보기</a>
-                    </div>
-                    <div class="card-footer">
-                        <small class="text-muted">Last updated 3 mins ago</small>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card h-100">
-                    <img src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMzAyMTRfMjM0%2FMDAxNjc2Mzc3MDkxMDE1.ezAOynCcArbcV0KE_vvjbd3j76SI_Pt7lKpfnNRmFvwg.NLvDkNCaM8qdw9aPubYn3VgF9Arn2LjB75nfPi1QmjEg.JPEG.ley3330%2F%25BA%25C0%25BF%25EC%25C0%25CC%25C3%25FE%25C1%25FD_%25B0%25AD%25B3%25B2%25BF%25AA_%25B0%25ED%25B1%25E2%25C1%25FD_%25B0%25AD%25B3%25B2%25BF%25AA_%25BB%25EF%25B0%25E3%25BB%25EC_%25B8%25C0%25C1%25FD_%25BD%25C5%25B3%25ED%25C7%25F6%25BF%25AA_%25B8%25C0%25C1%25FD_%25B3%25C3%25B8%25E9_%25B8%25C0%25C1%25FD_%25C8%25B8%25BD%25C4%25C0%25E5%25BC%25D2_45.jpg&type=sc960_832"
-                        class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="name">봉우이층집</h5>
-                        <p class="address">서울 강남구 봉은사로18길 76 스타 팰리스</p>
-                        <p>⭐⭐⭐⭐⭐</p>
-                        <p class="myreview">또 방문하고싶은 맛!</p>
-                        <a href="/matgo_list_detail" class="btn btn-primary">정보 더보기</a>
-                    </div>
-                    <div class="card-footer">
-                        <small class="text-muted">Last updated 3 mins ago</small>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card h-100">
-                    <img src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMzAyMTRfMjM0%2FMDAxNjc2Mzc3MDkxMDE1.ezAOynCcArbcV0KE_vvjbd3j76SI_Pt7lKpfnNRmFvwg.NLvDkNCaM8qdw9aPubYn3VgF9Arn2LjB75nfPi1QmjEg.JPEG.ley3330%2F%25BA%25C0%25BF%25EC%25C0%25CC%25C3%25FE%25C1%25FD_%25B0%25AD%25B3%25B2%25BF%25AA_%25B0%25ED%25B1%25E2%25C1%25FD_%25B0%25AD%25B3%25B2%25BF%25AA_%25BB%25EF%25B0%25E3%25BB%25EC_%25B8%25C0%25C1%25FD_%25BD%25C5%25B3%25ED%25C7%25F6%25BF%25AA_%25B8%25C0%25C1%25FD_%25B3%25C3%25B8%25E9_%25B8%25C0%25C1%25FD_%25C8%25B8%25BD%25C4%25C0%25E5%25BC%25D2_45.jpg&type=sc960_832"
-                        class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="name">봉우이층집</h5>
-                        <p class="address">서울 강남구 봉은사로18길 76 스타 팰리스</p>
-                        <p>⭐⭐⭐⭐⭐</p>
-                        <p class="myreview">또 방문하고싶은 맛!</p>
-                        <a href="/matgo_list_detail" class="btn btn-primary">정보 더보기</a>
-                    </div>
-                    <div class="card-footer">
-                        <small class="text-muted">Last updated 3 mins ago</small>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card h-100">
-                    <img src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMzAyMTRfMjM0%2FMDAxNjc2Mzc3MDkxMDE1.ezAOynCcArbcV0KE_vvjbd3j76SI_Pt7lKpfnNRmFvwg.NLvDkNCaM8qdw9aPubYn3VgF9Arn2LjB75nfPi1QmjEg.JPEG.ley3330%2F%25BA%25C0%25BF%25EC%25C0%25CC%25C3%25FE%25C1%25FD_%25B0%25AD%25B3%25B2%25BF%25AA_%25B0%25ED%25B1%25E2%25C1%25FD_%25B0%25AD%25B3%25B2%25BF%25AA_%25BB%25EF%25B0%25E3%25BB%25EC_%25B8%25C0%25C1%25FD_%25BD%25C5%25B3%25ED%25C7%25F6%25BF%25AA_%25B8%25C0%25C1%25FD_%25B3%25C3%25B8%25E9_%25B8%25C0%25C1%25FD_%25C8%25B8%25BD%25C4%25C0%25E5%25BC%25D2_45.jpg&type=sc960_832"
-                        class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="name">봉우이층집</h5>
-                        <p class="address">서울 강남구 봉은사로18길 76 스타 팰리스</p>
-                        <p>⭐⭐⭐⭐⭐</p>
-                        <p class="myreview">또 방문하고싶은 맛!</p>
-                        <a href="/matgo_list_detail" class="btn btn-primary">정보 더보기</a>
-                    </div>
-                    <div class="card-footer">
-                        <small class="text-muted">Last updated 3 mins ago</small>
-                    </div>
-                </div>
-            </div>
+        <div class="row row-cols-1 row-cols-md-4 g-4" id="matjip-list">
             <div class="col">
                 <div class="card h-100">
                     <img src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMzAyMTRfMjM0%2FMDAxNjc2Mzc3MDkxMDE1.ezAOynCcArbcV0KE_vvjbd3j76SI_Pt7lKpfnNRmFvwg.NLvDkNCaM8qdw9aPubYn3VgF9Arn2LjB75nfPi1QmjEg.JPEG.ley3330%2F%25BA%25C0%25BF%25EC%25C0%25CC%25C3%25FE%25C1%25FD_%25B0%25AD%25B3%25B2%25BF%25AA_%25B0%25ED%25B1%25E2%25C1%25FD_%25B0%25AD%25B3%25B2%25BF%25AA_%25BB%25EF%25B0%25E3%25BB%25EC_%25B8%25C0%25C1%25FD_%25BD%25C5%25B3%25ED%25C7%25F6%25BF%25AA_%25B8%25C0%25C1%25FD_%25B3%25C3%25B8%25E9_%25B8%25C0%25C1%25FD_%25C8%25B8%25BD%25C4%25C0%25E5%25BC%25D2_45.jpg&type=sc960_832"
