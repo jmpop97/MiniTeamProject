@@ -494,6 +494,7 @@
                 alert('페이지 공유를 지원하지 않습니다.')
             }
         }
+        //날씨text색
         function set_temp() {
             fetch("http://spartacodingclub.shop/sparta_api/weather/seoul").then((res) => res.json()).then((data) => {
 
@@ -521,6 +522,7 @@
                 $('#temp').append(temp_html)
             });
         }
+        //날씨데이터
         function set_icon() {
             fetch("http://spartacodingclub.shop/sparta_api/weather/seoul").then((res) => res.json()).then((data) => {
 
