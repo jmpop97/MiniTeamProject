@@ -66,6 +66,7 @@ def matjip_post():
 
     return jsonify({'msg':'저장완료!'})
 
+
 @app.route('/matgo_list_detail/<id>')
 def matgo_list_detail(id):
     return render_template('matgo_list_detail.html')
@@ -87,5 +88,10 @@ def matgo_list_detail_post(id):
 def matgo_list_detail_get(id):
     all_comments = list(db.Resinfo.find({},{'_id':False}))
     return jsonify({'result': all_comments})
+
+@app.route('/matgo_list_detail')
+def matgo_list_detail():
+    return render_template('matgo_list_detail.html')
+
 if __name__ == '__main__':
    app.run('0.0.0.0', port=5000, debug=True)
