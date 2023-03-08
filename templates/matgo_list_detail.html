@@ -151,7 +151,7 @@
             z-index: 10;
             width: 60px;
             height: 60px;
-            background-image: url('./img/starrate.png');
+            background-image: url('../static/images/starrate.png');
             background-repeat: no-repeat;
             background-size: 60px 60px;
             cursor: pointer;
@@ -182,7 +182,7 @@
             z-index: 10;
             width: 60px;
             height: 60px;
-            background-image: url('/./starrate.png');
+            background-image: url('../static/images/starrate.png');
             background-repeat: no-repeat;
             background-size: 60px 60px;
             cursor: pointer;
@@ -196,21 +196,7 @@
     </style>
 
     <script>
-        function set_icon() {
-            fetch("http://spartacodingclub.shop/sparta_api/weather/seoul").then((res) => res.json()).then((data) => {
-
-                ///* 본코드
-                // let temp = data['temp']
-                // $('#temp').text(temp)
-                //*/
-
-                let icon = data['icon']
-                $('#icon').empty()
-                let temp_html = `` //초기화
-                temp_html = `<span><img src="${icon}"></span>`
-                $('#icon').append(temp_html)
-            });
-        }
+        
 
         //별점 마킹 모듈 프로토타입으로 생성
         function Rating() {
@@ -240,6 +226,7 @@
             })
         });
         //상품평 작성 글자수 초과 체크 이벤트 리스너
+        /*
         document.querySelector('.review_textarea').addEventListener('keydown', function () {
             //리뷰 400자 초과 안되게 자동 자름
             let review = document.querySelector('.review_textarea');
@@ -249,7 +236,7 @@
                 review.value = review.value.substr(0, 400);
             }
         });
-
+   
         //저장 전송전 필드 체크 이벤트 리스너
         document.querySelector('#save').addEventListener('click', function (e) {
             //별점 선택 안했으면 메시지 표시
@@ -264,6 +251,7 @@
             }
             //폼 서밋
         });
+       
         Rating.prototype.showMessage = function (type) {//경고메시지 표시
             switch (type) {
                 case 'rate':
@@ -284,6 +272,7 @@
                     break;
             }
         }
+        */
     </script>
 
 </head>
