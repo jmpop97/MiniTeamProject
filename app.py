@@ -2,7 +2,7 @@ from flask import Flask, render_template, request, jsonify
 app = Flask(__name__)
 
 from pymongo import MongoClient
-client = MongoClient('mongodb+srv://sparta:test@cluster0.vnhcwoi.mongodb.net/?retryWrites=true&w=majority')
+client = MongoClient('mongodb+srv://sparta:test@cluster0.nlfpdbt.mongodb.net/?retryWrites=true&w=majority')
 db = client.dbsparta
 
 import requests
@@ -70,8 +70,22 @@ def matjip_post():
 def matgo_list_detail(id):
     return render_template('matgo_list_detail.html')
 
-@app.route('/matgo_list_detail/<id>')
+@app.route('/matgo_list_detail/<id>', methods=["POST"])
+def matgo_list_detail_post(id):
+    id_receive=id
+    star_receive = request.form['star']
+    #가게이름
+    review_receive = request.form['review']
+    doc={
+        'Res_id':id_receive,
+        'Res_star': star_receive,
+        'Res_review': review_receive
+    }
+    db.Resinfo.insert_one(doc)
+
+@app.route('/matgo_list_detail/<id>', methods=["GET"])
 def matgo_list_detail_get(id):
-    return render_template('matgo_list_detail.html')
+    all_comments = list(db.Resinfo.find({},{'_id':False}))
+    return jsonify({'result': all_comments})
 if __name__ == '__main__':
    app.run('0.0.0.0', port=5000, debug=True)
