@@ -1,0 +1,755 @@
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+        integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+
+    <title>맛GO</title>
+
+
+    <style>
+        @import url('#islrg > div.islrc > div:nth-child(196) > a.wXeWr.islib.nfEiy > div.bRMDJf.islir > imgp');
+
+        * {
+            font-family: 'Gowun Dodum', sans-serif;
+        }
+
+        .weather {
+            font-size: 20px;
+            background-color: white;
+            color: black;
+            width: 300px;
+            height: 50px;
+            top: 30px;
+            border-radius: 40px;
+            border: 1px solid black;
+
+            margin: 20px auto 0px auto;
+
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .mytitle {
+            font-size: 40px;
+            background-color: skyblue;
+            color: white;
+
+            height: 500px;
+
+            margin: 60px 0px 0px 0px;
+
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+
+            background-image: url('https://cdn.pixabay.com/photo/2017/01/26/02/06/platter-2009590_960_720.jpg');
+            background-position: center;
+            background-size: cover;
+        }
+
+        .search-wrapper {
+            position: absolute;
+            transform: translate(-50%, -50%);
+            top: 550px;
+            left: 50%;
+        }
+
+        .search-wrapper .input-holder {
+            height: 70px;
+            width: 70px;
+            overflow: hidden;
+            background: rgba(255, 255, 255, 0);
+            border-radius: 6px;
+            position: relative;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .search-wrapper.active .input-holder {
+            width: 450px;
+            border-radius: 50px;
+            background: white;
+            transition: all .5s cubic-bezier(0.000, 0.105, 0.035, 1.570);
+        }
+
+        .search-wrapper .input-holder .search-input {
+            width: 100%;
+            height: 50px;
+            padding: 0px 50px 0 20px;
+            opacity: 0;
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            background: transparent;
+            box-sizing: border-box;
+            border: none;
+            outline: none;
+            font-family: "Open Sans", Arial, Verdana;
+            font-size: 16px;
+            font-weight: 400;
+            line-height: 20px;
+            color: black;
+            transform: translate(0, 60px);
+            transition: all .3s cubic-bezier(0.000, 0.105, 0.035, 1.570);
+            transition-delay: 0.3s;
+        }
+
+        .search-wrapper.active .input-holder .search-input {
+            opacity: 1;
+            transform: translate(0, 10px);
+        }
+
+        .search-wrapper .input-holder .search-icon {
+            width: 60px;
+            height: 60px;
+            border: none;
+            border-radius: 10px;
+            background: #FFF;
+            padding: 0px;
+            outline: none;
+            position: relative;
+            z-index: 2;
+            float: right;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .search-wrapper.active .input-holder .search-icon {
+            width: 50px;
+            height: 50px;
+            margin: 10px;
+            border-radius: 30px;
+        }
+
+        .search-wrapper .input-holder .search-icon span {
+            width: 15px;
+            height: 22px;
+            display: inline-block;
+            vertical-align: middle;
+            position: relative;
+            transform: rotate(45deg);
+            transition: all .4s cubic-bezier(0.650, -0.600, 0.240, 1.650);
+        }
+
+        .search-wrapper.active .input-holder .search-icon span {
+            transform: rotate(-45deg);
+        }
+
+        .search-wrapper .input-holder .search-icon span::before,
+        .search-wrapper .input-holder .search-icon span::after {
+            position: absolute;
+            content: '';
+        }
+
+        .search-wrapper .input-holder .search-icon span::before {
+            width: 4px;
+            height: 11px;
+            left: 9px;
+            top: 18px;
+            border-radius: 2px;
+            background: #FE5F55;
+        }
+
+        .search-wrapper .input-holder .search-icon span::after {
+            width: 14px;
+            height: 14px;
+            left: 0px;
+            top: 0px;
+            border-radius: 16px;
+            border: 4px solid #FE5F55;
+        }
+
+        .search-wrapper .close {
+            position: absolute;
+            z-index: 1;
+            top: 24px;
+            right: 20px;
+            width: 25px;
+            height: 25px;
+            cursor: pointer;
+            transform: rotate(-180deg);
+            transition: all .3s cubic-bezier(0.285, -0.450, 0.935, 0.110);
+            transition-delay: 0.2s;
+        }
+
+        .search-wrapper.active .close {
+            right: -50px;
+            transform: rotate(45deg);
+            transition: all .6s cubic-bezier(0.000, 0.105, 0.035, 1.570);
+            transition-delay: 0.5s;
+        }
+
+        .search-wrapper .close::before,
+        .search-wrapper .close::after {
+            position: absolute;
+            content: '';
+            background: #FE5F55;
+            border-radius: 2px;
+        }
+
+        .search-wrapper .close::before {
+            width: 5px;
+            height: 25px;
+            left: 10px;
+            top: 0px;
+        }
+
+        .search-wrapper .close::after {
+            width: 25px;
+            height: 5px;
+            left: 0px;
+            top: 10px;
+        }
+
+
+        .mytitle>button {
+            width: 250px;
+            height: 50px;
+
+            background-color: transparent;
+
+            border: 1px solid white;
+            color: white;
+
+            border-radius: 50px;
+
+            margin-top: 20px;
+        }
+
+        .mycomment {
+            color: black;
+        }
+
+        .mycards {
+            width: 1500px;
+            margin: 80px auto 0px auto;
+            padding: 20px 0px 100px 0px;
+        }
+
+        .food {
+            float: right;
+            top: 12px;
+
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+
+        }
+
+        .logo {
+
+
+            font-size: px;
+
+            width: 200px;
+            height: 0px;
+
+            position: relative;
+            float: left;
+            top: -70px;
+
+
+            padding: 0px;
+
+
+            color: salmon;
+            font-size: 10px;
+
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+
+        }
+
+        .mybtns {
+
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .mylist {
+            max-width: 1200px;
+            width: 95%;
+
+            margin: 20px auto auto auto;
+
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .mybutton {
+            right: 550px;
+            top: 30px;
+
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+
+            margin: 15px auto auto auto;
+
+        }
+
+        .star {
+
+            left: 552px;
+            top: 84px;
+
+
+
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+
+        }
+
+        .blue {
+            color: blue;
+        }
+
+        .aqua {
+            color: aqua;
+        }
+
+        .red {
+            color: red;
+        }
+
+        .wrap {
+            max-width: 480px;
+            margin: 0 auto;
+            background-color: #fff;
+            height: 100%;
+            padding: 20px;
+            box-sizing: border-box;
+
+        }
+
+        .reviewform textarea {
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+
+        .rating .rate_radio {
+            position: relative;
+            display: inline-block;
+            z-index: 20;
+            opacity: 0.001;
+            width: 60px;
+            height: 60px;
+            background-color: #fff;
+            cursor: pointer;
+            vertical-align: top;
+            display: none;
+        }
+
+        .rating .rate_radio+label {
+            position: relative;
+            display: inline-block;
+            margin-left: -4px;
+            z-index: 10;
+            width: 60px;
+            height: 60px;
+            background-image: url('./img/starrate.png');
+            background-repeat: no-repeat;
+            background-size: 60px 60px;
+            cursor: pointer;
+            background-color: #f0f0f0;
+        }
+
+        .rating .rate_radio:checked+label {
+            background-color: #ff8;
+        }
+
+        .warning_msg {
+            display: none;
+            position: relative;
+            text-align: center;
+            background: #ffffff;
+            line-height: 26px;
+            width: 100%;
+            color: red;
+            padding: 10px;
+            box-sizing: border-box;
+            border: 1px solid #e0e0e0;
+        }
+
+        .rating .rate_radio+label {
+            position: relative;
+            display: inline-block;
+            margin-left: -4px;
+            z-index: 10;
+            width: 60px;
+            height: 60px;
+            background-image: url('/./starrate.png');
+            background-repeat: no-repeat;
+            background-size: 60px 60px;
+            cursor: pointer;
+            background-color: #f0f0f0;
+        }
+
+        .rating .rate_radio:checked+label {
+            background-color: #ff8;
+        }
+
+        .bar {
+
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+
+            background-color: gray;
+
+            margin-top: 20px;
+
+            height: 150px;
+        }
+
+        .bartext {
+            color: white;
+        }
+    </style>
+    <script>
+        $(document).ready(function () {
+            set_temp();
+            set_icon();
+            show_comment();
+        });
+
+        function searchToggle(obj, evt) {
+            var container = $(obj).closest('.search-wrapper');
+            if (!container.hasClass('active')) {
+                container.addClass('active');
+                evt.preventDefault();
+            }
+            else if (container.hasClass('active') && $(obj).closest('.input-holder').length == 0) {
+                container.removeClass('active');
+                container.find('.search-input').val('');
+            }
+        }
+        function bookmarksite(title, url) {
+            if (document.all) {
+                window.external.AddFavorite(url, title);
+            }
+
+            else if (window.chrome) {
+                alert("Ctrl+D키를 누르시면 즐겨찾기.");
+            }
+
+            else if (window.sidebar) {
+                window.sidebar.addPanel(title, url, "");
+            }
+            else if (window.opera && window.print) {
+                var elem = document.createElement('a');
+                elem.setAttribute('href', url);
+                elem.setAttribute('title', title);
+                elem.setAttribute('rel', 'sidebar');
+                elem.click();
+            }
+        }
+        sharePage = () => {
+            const shareObject = {
+                title: '공유할 콘텐츠의 제목',
+                text: 'WEBISFREE.com',
+                url: window.location.href,
+            };
+
+            if (navigator.share) { // Navigator를 지원하는 경우만 실행
+                navigator
+                    .share(shareObject)
+                    .then(() => {
+                        // 정상 동작할 경우 실행
+                        alert('공유하기 성공')
+                    })
+                    .catch((error) => {
+                        alert('에러가 발생했습니다.')
+                    })
+            } else { // navigator를 지원하지 않는 경우
+                alert('페이지 공유를 지원하지 않습니다.')
+            }
+        }
+        function set_temp() {
+            fetch("http://spartacodingclub.shop/sparta_api/weather/seoul").then((res) => res.json()).then((data) => {
+
+                ///* 본코드
+                // let temp = data['temp']
+                // $('#temp').text(temp)
+                //*/
+
+                let temp = data['temp']
+                $('#temp').empty()
+                let temp_html = `` //초기화
+                if (temp < 5) {
+                    // 추운 온도 (파랑)
+                    temp_html = `<span" class="blue">${temp}도</span>`
+                } else if (5 <= temp < 18) {
+                    // 살짝 추운 온도 (아쿠아)
+                    temp_html = `<span" class="aqua">${temp}도</span>`
+                } else if (temp > 25) {
+                    // 더운 온도 (빨강)
+                    temp_html = `<span" class="red">${temp}도</span>`
+                } else {
+                    // 평범한 온도 (검정_그대로)
+                    temp_html = `<span>${temp}도</span>`
+                }
+                $('#temp').append(temp_html)
+            });
+        }
+        function set_icon() {
+            fetch("http://spartacodingclub.shop/sparta_api/weather/seoul").then((res) => res.json()).then((data) => {
+
+                ///* 본코드
+                // let temp = data['temp']
+                // $('#temp').text(temp)
+                //*/
+
+                let icon = data['icon']
+                $('#icon').empty()
+                let temp_html = `` //초기화
+                temp_html = `<span><img src="${icon}"></span>`
+                $('#icon').append(temp_html)
+            });
+        }
+        //별점 마킹 모듈 프로토타입으로 생성
+        function Rating() { };
+        Rating.prototype.rate = 0;
+        Rating.prototype.setRate = function (newrate) {
+            //별점 마킹 - 클릭한 별 이하 모든 별 체크 처리
+            this.rate = newrate;
+            let items = document.querySelectorAll('.rate_radio');
+            items.forEach(function (item, idx) {
+                if (idx < newrate) {
+                    item.checked = true;
+                } else {
+                    item.checked = false;
+                }
+            });
+        }
+        let rating = new Rating();//별점 인스턴스 생성
+
+        document.addEventListener('DOMContentLoaded', function () {
+            //별점선택 이벤트 리스너
+            document.querySelector('.rating').addEventListener('click', function (e) {
+                let elem = e.target;
+                if (elem.classList.contains('rate_radio')) {
+                    rating.setRate(parseInt(elem.value));
+                }
+            })
+        });
+        //상품평 작성 글자수 초과 체크 이벤트 리스너
+        document.querySelector('.review_textarea').addEventListener('keydown', function () {
+            //리뷰 400자 초과 안되게 자동 자름
+            let review = document.querySelector('.review_textarea');
+            let lengthCheckEx = /^.{400,}$/;
+            if (lengthCheckEx.test(review.value)) {
+                //400자 초과 컷
+                review.value = review.value.substr(0, 400);
+            }
+        });
+
+        //저장 전송전 필드 체크 이벤트 리스너
+        document.querySelector('#save').addEventListener('click', function (e) {
+            //별점 선택 안했으면 메시지 표시
+            if (rating.rate == 0) {
+                rating.showMessage('rate');
+                return false;
+            }
+            //리뷰 5자 미만이면 메시지 표시
+            if (document.querySelector('.review_textarea').value.length < 5) {
+                rating.showMessage('review');
+                return false;
+            }
+            //폼 서밋
+        });
+        Rating.prototype.showMessage = function (type) {//경고메시지 표시
+            switch (type) {
+                case 'rate':
+                    //안내메시지 표시
+                    document.querySelector('.review_rating .warning_msg').style.display = 'block';
+                    //지정된 시간 후 안내 메시지 감춤
+                    setTimeout(function () {
+                        document.querySelector('.review_rating .warning_msg').style.display = 'none';
+                    }, 1000);
+                    break;
+                case 'review':
+                    //안내메시지 표시
+                    document.querySelector('.review_contents .warning_msg').style.display = 'block';
+                    //지정된 시간 후 안내 메시지 감춤
+                    setTimeout(function () {
+                        document.querySelector('.review_contents .warning_msg').style.display = 'none';
+                    }, 1000);
+                    break;
+            }
+        }
+
+    </script>
+</head>
+
+<body>
+    <!--날씨-->
+    <div class="weather">
+        서울<span id="temp">연동이 되지 않음</span>
+        │날씨<span id="icon"></span>
+    </div>
+    <!--로고-->
+    <div class="logo">
+        <img src="ARK.jpg" alt="로고" width="130px" height="130px" \>
+    </div>
+    <!--나의맛집-->
+    <div class="food">
+        <button type="button" class="btn btn-outline-primary">나의 맛집</button>
+    </div>
+    <!--대문-->
+    <div class="mytitle">
+        <h3>폭팔적인 리뷰와 필요한 정보 공유!</h3>
+        <p>맛GO</p>
+    </div>
+    <!--검색창-->
+    <div class="search-wrapper">
+        <div class="input-holder">
+            <input type="text" class="search-input" placeholder="맛집 검색중...." />
+            <button class="search-icon" onclick="searchToggle(this, event);"><span></span></button>
+        </div>
+        <span class="close" onclick="searchToggle(this, event);"></span>
+    </div>
+    <!--공유하기-->
+    <div class="star">
+        <button type="button" class="btn btn-outline-primary">공유하기</button>
+    </div>
+    <!--작성하기-->
+    <div class="mybutton">
+        <div class="btn-toolbar mb-3" role="toolbar" aria-label="Toolbar with button groups">
+            <div class="btn-group me-2" role="group" aria-label="First group">
+                <button onClick="location.href='write.html'" type="button" class="btn btn-outline-secondary">작성하기
+            </div>
+        </div>
+    </div>
+    <!--목록-->
+    <div class="mylist">
+        <div class="row row-cols-1 row-cols-md-4 g-4">
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMzAyMTRfMjM0%2FMDAxNjc2Mzc3MDkxMDE1.ezAOynCcArbcV0KE_vvjbd3j76SI_Pt7lKpfnNRmFvwg.NLvDkNCaM8qdw9aPubYn3VgF9Arn2LjB75nfPi1QmjEg.JPEG.ley3330%2F%25BA%25C0%25BF%25EC%25C0%25CC%25C3%25FE%25C1%25FD_%25B0%25AD%25B3%25B2%25BF%25AA_%25B0%25ED%25B1%25E2%25C1%25FD_%25B0%25AD%25B3%25B2%25BF%25AA_%25BB%25EF%25B0%25E3%25BB%25EC_%25B8%25C0%25C1%25FD_%25BD%25C5%25B3%25ED%25C7%25F6%25BF%25AA_%25B8%25C0%25C1%25FD_%25B3%25C3%25B8%25E9_%25B8%25C0%25C1%25FD_%25C8%25B8%25BD%25C4%25C0%25E5%25BC%25D2_45.jpg&type=sc960_832"
+                        class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="name">봉우이층집</h5>
+                        <p class="address">서울 강남구 봉은사로18길 76 스타 팰리스</p>
+                        <p>⭐⭐⭐⭐⭐</p>
+                        <p class="myreview">또 방문하고싶은 맛!</p>
+                        <a href="matgo_list_detail.html" class="btn btn-primary">정보 더보기</a>
+                    </div>
+                    <div class="card-footer">
+                        <small class="text-muted">Last updated 3 mins ago</small>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMzAyMTRfMjM0%2FMDAxNjc2Mzc3MDkxMDE1.ezAOynCcArbcV0KE_vvjbd3j76SI_Pt7lKpfnNRmFvwg.NLvDkNCaM8qdw9aPubYn3VgF9Arn2LjB75nfPi1QmjEg.JPEG.ley3330%2F%25BA%25C0%25BF%25EC%25C0%25CC%25C3%25FE%25C1%25FD_%25B0%25AD%25B3%25B2%25BF%25AA_%25B0%25ED%25B1%25E2%25C1%25FD_%25B0%25AD%25B3%25B2%25BF%25AA_%25BB%25EF%25B0%25E3%25BB%25EC_%25B8%25C0%25C1%25FD_%25BD%25C5%25B3%25ED%25C7%25F6%25BF%25AA_%25B8%25C0%25C1%25FD_%25B3%25C3%25B8%25E9_%25B8%25C0%25C1%25FD_%25C8%25B8%25BD%25C4%25C0%25E5%25BC%25D2_45.jpg&type=sc960_832"
+                        class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="name">봉우이층집</h5>
+                        <p class="address">서울 강남구 봉은사로18길 76 스타 팰리스</p>
+                        <p>⭐⭐⭐⭐⭐</p>
+                        <p class="myreview">또 방문하고싶은 맛!</p>
+                        <a href="matgo_list_detail.html" class="btn btn-primary">정보 더보기</a>
+                    </div>
+                    <div class="card-footer">
+                        <small class="text-muted">Last updated 3 mins ago</small>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMzAyMTRfMjM0%2FMDAxNjc2Mzc3MDkxMDE1.ezAOynCcArbcV0KE_vvjbd3j76SI_Pt7lKpfnNRmFvwg.NLvDkNCaM8qdw9aPubYn3VgF9Arn2LjB75nfPi1QmjEg.JPEG.ley3330%2F%25BA%25C0%25BF%25EC%25C0%25CC%25C3%25FE%25C1%25FD_%25B0%25AD%25B3%25B2%25BF%25AA_%25B0%25ED%25B1%25E2%25C1%25FD_%25B0%25AD%25B3%25B2%25BF%25AA_%25BB%25EF%25B0%25E3%25BB%25EC_%25B8%25C0%25C1%25FD_%25BD%25C5%25B3%25ED%25C7%25F6%25BF%25AA_%25B8%25C0%25C1%25FD_%25B3%25C3%25B8%25E9_%25B8%25C0%25C1%25FD_%25C8%25B8%25BD%25C4%25C0%25E5%25BC%25D2_45.jpg&type=sc960_832"
+                        class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="name">봉우이층집</h5>
+                        <p class="address">서울 강남구 봉은사로18길 76 스타 팰리스</p>
+                        <p>⭐⭐⭐⭐⭐</p>
+                        <p class="myreview">또 방문하고싶은 맛!</p>
+                        <a href="matgo_list_detail.html" class="btn btn-primary">정보 더보기</a>
+                    </div>
+                    <div class="card-footer">
+                        <small class="text-muted">Last updated 3 mins ago</small>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMzAyMTRfMjM0%2FMDAxNjc2Mzc3MDkxMDE1.ezAOynCcArbcV0KE_vvjbd3j76SI_Pt7lKpfnNRmFvwg.NLvDkNCaM8qdw9aPubYn3VgF9Arn2LjB75nfPi1QmjEg.JPEG.ley3330%2F%25BA%25C0%25BF%25EC%25C0%25CC%25C3%25FE%25C1%25FD_%25B0%25AD%25B3%25B2%25BF%25AA_%25B0%25ED%25B1%25E2%25C1%25FD_%25B0%25AD%25B3%25B2%25BF%25AA_%25BB%25EF%25B0%25E3%25BB%25EC_%25B8%25C0%25C1%25FD_%25BD%25C5%25B3%25ED%25C7%25F6%25BF%25AA_%25B8%25C0%25C1%25FD_%25B3%25C3%25B8%25E9_%25B8%25C0%25C1%25FD_%25C8%25B8%25BD%25C4%25C0%25E5%25BC%25D2_45.jpg&type=sc960_832"
+                        class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="name">봉우이층집</h5>
+                        <p class="address">서울 강남구 봉은사로18길 76 스타 팰리스</p>
+                        <p>⭐⭐⭐⭐⭐</p>
+                        <p class="myreview">또 방문하고싶은 맛!</p>
+                        <a href="matgo_list_detail.html" class="btn btn-primary">정보 더보기</a>
+                    </div>
+                    <div class="card-footer">
+                        <small class="text-muted">Last updated 3 mins ago</small>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMzAyMTRfMjM0%2FMDAxNjc2Mzc3MDkxMDE1.ezAOynCcArbcV0KE_vvjbd3j76SI_Pt7lKpfnNRmFvwg.NLvDkNCaM8qdw9aPubYn3VgF9Arn2LjB75nfPi1QmjEg.JPEG.ley3330%2F%25BA%25C0%25BF%25EC%25C0%25CC%25C3%25FE%25C1%25FD_%25B0%25AD%25B3%25B2%25BF%25AA_%25B0%25ED%25B1%25E2%25C1%25FD_%25B0%25AD%25B3%25B2%25BF%25AA_%25BB%25EF%25B0%25E3%25BB%25EC_%25B8%25C0%25C1%25FD_%25BD%25C5%25B3%25ED%25C7%25F6%25BF%25AA_%25B8%25C0%25C1%25FD_%25B3%25C3%25B8%25E9_%25B8%25C0%25C1%25FD_%25C8%25B8%25BD%25C4%25C0%25E5%25BC%25D2_45.jpg&type=sc960_832"
+                        class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="name">봉우이층집</h5>
+                        <p class="address">서울 강남구 봉은사로18길 76 스타 팰리스</p>
+                        <p>⭐⭐⭐⭐⭐</p>
+                        <p class="myreview">또 방문하고싶은 맛!</p>
+                        <a href="matgo_list_detail.html" class="btn btn-primary">정보 더보기</a>
+                    </div>
+                    <div class="card-footer">
+                        <small class="text-muted">Last updated 3 mins ago</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--팀소개-->
+    <div class="bar">
+        <div class="bartext">
+            <div style="display: inline-block; vertical-align: top;">
+                <img src="ARK.jpg" style="height: 100px; width: 100px;">
+            </div>
+
+            <div style="display: inline-block;">
+                <h6>프로젝트명 : 맛Go</h6>
+                <h6>폭발적인 리뷰와 필요한 정보 공유 서비스</h6>
+                <h6>팀원 : 박종민 박종원 배현아 이정현 이준영</h6>
+                <h6>Copyright ©2023 matgo.All rights reserved.</h6>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
