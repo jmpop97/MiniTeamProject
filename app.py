@@ -66,8 +66,12 @@ def matjip_post():
 
     return jsonify({'msg':'저장완료!'})
 
-@app.route('/matgo_list_detail')
-def matgo_list_detail():
+@app.route('/matgo_list_detail/<id>')
+def matgo_list_detail(id):
+    return render_template('matgo_list_detail.html')
+
+@app.route('/matgo_list_detail/<id>')
+def matgo_list_detail_get(id):
     return render_template('matgo_list_detail.html')
 if __name__ == '__main__':
    app.run('0.0.0.0', port=5000, debug=True)
