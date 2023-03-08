@@ -106,23 +106,47 @@
         }
 
     </style>
+    <script>
+        function save_matjip() {
+            let url = $('#url').val()            
+            let stname = $('#stname').val()
+            let stintro = $('#stintro').val()
+            let stadd = $('#stadd').val()
+            let ststar = $('#ststar').val()
+            let comment = $('#comment').val()
+            let price = $('#price').val()
+    
+            let formData = new FormData();
+            
+            formData.append("url_give", url);
+            formData.append("stname_give", stname);
+            formData.append("stintro_give", stintro);
+            formData.append("stadd_give", stadd);
+            formData.append("ststar_give", ststar);
+            formData.append("comment_give", comment);
+            formData.append("price_give", price);
+    
+            fetch('/write', { method: "POST", body: formData }).then((res) => res.json()).then((data) => {
+                alert(data['msg'])
+            })
+        }
+    </script>
 </head>
 
 <body>
-
     <!--대문-->
     <div class="mytitle">
         <h1>맛Go</h1>
     </div>
-    <!--메뉴리스트-->
+ <!--메뉴리스트-->
     <div class="myactive1">
         <ul class="nav nav-tabs">
             <li class="myhome">
-                <a class="nav-link" href="matgo.html">Home</a>
+                <a class="nav-link" href="/matgo">Home</a>
             </li>
 
             <li class="wtlist">
-                <a class="nav-link active" href="write.html">맛집 추가</a>
+                <a class="nav-link active" href="/write">맛집 추가</a>
             </li>
 
             <div class="prolog">
@@ -133,10 +157,10 @@
 
         </ul>
     </div>
-    <!--작성내용-->
+ <!--작성내용-->
     <div class="mypost" id="post-box">
         <h4> - 작성하기 - </h4>
-        <!--imgLink-->
+<!--imgLink-->
         <div class="form-floating mb-3">
             <input type="email" class="form-control" id="url" placeholder="name@example.com">
             <label for="url">이미지 URL</label>
@@ -145,7 +169,7 @@
         <div class="mb-3">
             <input class="form-control" type="file" id="formFileMultiple" multiple>
         </div>
-        <!--가게이름&가게소개-->
+<!--가게이름&가게소개-->
         <div class="row g-2">
             <div class="col-md">
                 <div class="form-floating">
@@ -156,19 +180,19 @@
             </div>
             <div class="col-md">
                 <div class="form-floating">
-                    <input type="email" class="form-control" id="sintro" placeholder="name@example.com"
+                    <input type="email" class="form-control" id="stintro" placeholder="name@example.com"
                            value="">
-                    <label for="sintro">가게 소개</label>
+                    <label for="stintro">가게 소개</label>
                 </div>
             </div>
         </div>
-        <!--주소-->
+ <!--주소-->
         <div class="form-floating">
             <textarea class="form-control" placeholder="Leave a comment here" id="stadd"
                     style="height: 100px"></textarea>
             <label for="stadd">주소</label>
         </div>
-        <!--별점-->
+ <!--별점-->
         <div class="input-group mb-3">
             <label class="input-group-text" for="ststar">별점</label>
             <select class="form-select" id="ststar">
@@ -180,25 +204,25 @@
                 <option value="5">⭐⭐⭐⭐⭐</option>
             </select>
         </div>
-        <!--코멘트-->
+ <!--코멘트-->
         <div class="form-floating">
             <textarea class="form-control" placeholder="Leave a comment here" id="comment"
                       style="height: 100px"></textarea>
             <label for="comment">코멘트</label>
         </div>
-        <!--가격-->
+ <!--가격-->
         <div class="form-floating">
             <textarea class="form-control" placeholder="Leave a comment here" id="price"
                       style="height: 100px"></textarea>
             <label for="price">가격</label>
         </div>
-        <!--저장&닫기-->
+<!--저장&닫기-->
         <div class="mybtn">
-            <button onclick="close_box()" type="button" class="btn btn-outline-dark">저장</button>
-            <button onClick="history.back();" type="button" class="btn btn-outline-dark">닫기</button>
+            <button onclick="save_matjip()" type="button" class="btn btn-outline-dark">작성</button>
+            <button onClick="history.back();" type="button" class="btn btn-outline-dark">취소</button>
         </div>
     </div>
-    <!--팀소개-->
+<!--팀소개-->
     <div class="bar">
         <div class="bartext">
             <div style="display: inline-block; vertical-align: top;">

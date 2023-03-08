@@ -14,6 +14,16 @@ def main():
     return render_template('matgo.html')
 
 # 테스트 시작하기
+@app.route('/matgo')
+def matgo():
+    return render_template('matgo.html')
+
+@app.route("/matgo", methods=["GET"])
+def matgo_get():
+    # 여러개 찾기 - 예시 ( _id 값은 제외하고 출력)
+    all_comments = list(db.fan.find({},{'_id':False}))
+    return jsonify({'result': all_comments})
+
 @app.route('/write')
 def write():
     return render_template('write.html')
@@ -56,11 +66,8 @@ def matjip_post():
 
     return jsonify({'msg':'저장완료!'})
 
-@app.route("/matgo", methods=["GET"])
-def matgo_get():
-    # 여러개 찾기 - 예시 ( _id 값은 제외하고 출력)
-    all_comments = list(db.fan.find({},{'_id':False}))
-    return jsonify({'result': all_comments})
-
+@app.route('/matgo_list_detail')
+def matgo_list_detail():
+    return render_template('matgo_list_detail.html')
 if __name__ == '__main__':
    app.run('0.0.0.0', port=5000, debug=True)
