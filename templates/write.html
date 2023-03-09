@@ -134,7 +134,7 @@
                 alert('빈칸을 채워주세요!');
             } else {
                 fetch('/write/matjip', { method: "POST", body: formData }).then((res) => res.json()).then((data) => {
-                    alert(data['msg']);
+                    alert(data['msg']);location.href='/';
                 })
             }
         }
@@ -224,7 +224,7 @@
                </div>
                <!--저장&닫기-->
                <div class="mybtn">
-                <button onclick="save_matjip(); location.href='/';" type="submit" class="btn btn-outline-dark" >작성</button>
+                <button onclick="save_matjip(); " type="submit" class="btn btn-outline-dark" >작성</button>
                 <button onClick="history.back();" type="button" class="btn btn-outline-dark">취소</button>
                </div>
            </div>

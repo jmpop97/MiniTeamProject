@@ -5,9 +5,9 @@ app = Flask(__name__)
 
 from pymongo import MongoClient
 #전체
-client = MongoClient('mongodb+srv://sparta:test@cluster0.vnhcwoi.mongodb.net/?retryWrites=true&w=majority')
+#client = MongoClient('mongodb+srv://sparta:test@cluster0.vnhcwoi.mongodb.net/?retryWrites=true&w=majority')
 #me
-#client = MongoClient('mongodb+srv://sparta:test@cluster0.nlfpdbt.mongodb.net/?retryWrites=true&w=majority')
+client = MongoClient('mongodb+srv://sparta:test@cluster0.nlfpdbt.mongodb.net/?retryWrites=true&w=majority')
 
 db = client.dbsparta
 
@@ -60,7 +60,7 @@ def objectIdDecoder(list):
 def write():
     return render_template('write.html')
 
-@app.route("/write", methods=["POST"])
+@app.route("/write/matjip", methods=["POST"])
 def matjip_post():
     url_receive = request.form['url_give']
     #가게이름
