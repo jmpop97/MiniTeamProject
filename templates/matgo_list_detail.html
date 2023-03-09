@@ -218,7 +218,7 @@
         });
         //review데이터 열기
         function matgo_list_detail_get() {
-
+            $('#Reviewlist').empty()
             fetch('/matgo_list_detail/Review')
                 .then((res) => res.json())
                 .then((data) => {
@@ -229,6 +229,17 @@
                         if (Review_id == Resid) {
                             let Res_star = a['Res_star']
                             let Res_review = a['Res_review']
+                            let Res_star_repeat = '⭐'.repeat(Res_star)
+
+                                Review_html = `        <div class="card border-light mb-3" style="width: 600px;">
+            <div class="card-header">${Res_star_repeat}</div>
+            <div class="card-body">
+                <h5 class="card-title">${Res_review}</h5>
+
+            </div>
+        </div>`
+        $('#Reviewlist').append(Review_html)
+
                         }
                     })
                     console.log(rows)
@@ -413,7 +424,7 @@
     </div>
     <!--이미지-->
     <div class="myimage" id="Res_img">
-        <img src="https://cdn.pixabay.com/photo/2014/08/14/14/21/shish-kebab-417994__340.jpg"
+        <img src="https://cdn.pixabay.c om/photo/2014/08/14/14/21/shish-kebab-417994__340.jpg"
             style="height: 350px; max-width: 1200px">
     </div>
     <!--write에서 작성된 내용-->
@@ -511,7 +522,7 @@
 
         </form>
     </div>
-    <div class="re">
+    <div class="re" id="Reviewlist">
         <div class="card border-light mb-3" style="width: 600px;">
             <div class="card-header">별점⭐⭐⭐⭐⭐</div>
             <div class="card-body">
