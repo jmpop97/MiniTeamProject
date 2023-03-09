@@ -211,19 +211,46 @@
             fetch('/matgo/matjips')
                 .then((res) => res.json())
                 .then((data) => {
+
                     let rows = data['result']
-                    $('#matjip-list').empty()
+                    $('#Res_img').empty()
+                    $('#Res_card').empty()
                     rows.forEach((a) => {
                         let _id = a['_id']['$oid']
-                        let url = a['url']
-                        let stname = a['stname']
-                        let stintro = a['stintro']
-                        let stadd = a['stadd']
-                        let ststar = a['ststar']
-                        let comment = a['comment']
-                        let price = a['price']
-                        let star_repeat = '⭐'.repeat(ststar)
-                        console.log(stname)
+                        del_last = Resid.length - 1
+                        if (_id == Resid.substring(1, del_last)) {
+                            let url = a['url']
+                            let stname = a['stname']
+                            let stintro = a['stintro']
+                            let stadd = a['stadd']
+                            let ststar = a['ststar']
+                            let comment = a['comment']
+                            let price = a['price']
+                            let star_repeat = '⭐'.repeat(ststar)
+                            
+                            Res_img =`<img src="${url}"
+            style="height: 350px; max-width: 1200px">`
+                            Res_html = `<div class="card-body">
+                <h1 class="stname">${stname}</h1>
+                <h5 class="stintro">${stintro}</h5>
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">주소) ${stadd}</li>
+                <li class="list-group-item">별점) ${star_repeat}</li>
+                <li class="list-group-item">코멘트) ${comment}</li>
+                <li class="list-group-item">가격) ${price}</li>
+            </ul>
+            <div class="card-body">
+                <a href="https://map.naver.com/v5/entry/place/37577974?placePath=%2Fhome&c=15,0,0,0,dh"
+                    class="card-link">지도 보기</a>
+            </div>`
+
+                            $('#Res_card').append(Res_html)
+                            $('#Res_img').append(Res_img)
+
+                        }
+
+
                     })
                 })
         }
@@ -351,13 +378,13 @@
         </ul>
     </div>
     <!--이미지-->
-    <div class="myimage">
+    <div class="myimage" id="Res_img">
         <img src="https://cdn.pixabay.com/photo/2014/08/14/14/21/shish-kebab-417994__340.jpg"
             style="height: 350px; max-width: 1200px">
     </div>
     <!--write에서 작성된 내용-->
     <div class="mycard">
-        <div class="card">
+        <div class="card" id="Res_card">
             <div class="card-body">
                 <h1 class="stname">봉우이층집</h1>
                 <h5 class="stintro">한식</h5>

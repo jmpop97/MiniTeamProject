@@ -100,7 +100,7 @@ def matgo_list_detail(id):
 
 @app.route('/matgo_list_detail/<id>', methods=["GET"])
 def matgo_list_detail_get(id):
-    all_matjips = list(db.matjip.find({},{'_id':id}))
+    all_matjips = db.matjip.find({'_id'(id)})
     return jsonify({'result': all_matjips})
 
 @app.route('/matgo_list_detail/<id>', methods=["POST"])
