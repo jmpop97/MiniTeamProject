@@ -3,7 +3,11 @@ from bson import json_util
 app = Flask(__name__)
 
 from pymongo import MongoClient
+#전체
 client = MongoClient('mongodb+srv://sparta:test@cluster0.vnhcwoi.mongodb.net/?retryWrites=true&w=majority')
+#me
+# client = MongoClient('mongodb+srv://sparta:test@cluster0.nlfpdbt.mongodb.net/?retryWrites=true&w=majority')
+
 db = client.dbsparta
 
 import requests
@@ -100,8 +104,8 @@ def matgo_list_detail(id):
 
 @app.route('/matgo_list_detail/<id>', methods=["GET"])
 def matgo_list_detail_get(id):
-    all_matjips = db.matjip.find({'_id'(id)})
-    return jsonify({'result': all_matjips})
+    ResReview = db.Resinfo.find_one({'Res_id':id})
+    return jsonify({'ResReview': ResReview})
 
 @app.route('/matgo_list_detail/<id>', methods=["POST"])
 def matgo_list_detail_post(id):
@@ -115,6 +119,19 @@ def matgo_list_detail_post(id):
     }
     db.Resinfo.insert_one(doc)
     return jsonify({'msg':'저장완료!'})
+
+# _id 해당 맛집 지우기
+@app.route('/matgo_list_detail/delete', methods=["POST"])
+def delete_post():
+    _id_receive = request.form.get('_id_give')
+    db.matjips.delete_one({'_id': _id_receive})
+    return jsonify({'msg': '삭제 완료'})
+
+
+
+
+
+
 
 
 

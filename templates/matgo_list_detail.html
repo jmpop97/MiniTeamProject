@@ -200,11 +200,16 @@
         let reviewstar = 0;
         let Resid = '{{Resid}}'
         $(document).ready(function () {
+            //    matgo_list_detail_get();
             show_matjip();
         });
         //review데이터 열기
-        function load_review_data() {
-            console.log(Resid)
+        function matgo_list_detail_get() {
+            fetc('/matgo_list_detail/{{Resid}}')
+                .then((res) => res.json())
+                .then((data) => {
+                    console.log(data)
+                })
         }
         //맛집 정보열기
         function show_matjip() {
@@ -217,8 +222,7 @@
                     $('#Res_card').empty()
                     rows.forEach((a) => {
                         let _id = a['_id']['$oid']
-                        del_last = Resid.length - 1
-                        if (_id == Resid.substring(1, del_last)) {
+                        if (_id == Resid) {
                             let url = a['url']
                             let stname = a['stname']
                             let stintro = a['stintro']
@@ -227,8 +231,8 @@
                             let comment = a['comment']
                             let price = a['price']
                             let star_repeat = '⭐'.repeat(ststar)
-                            
-                            Res_img =`<img src="${url}"
+
+                            Res_img = `<img src="${url}"
             style="height: 350px; max-width: 1200px">`
                             Res_html = `<div class="card-body">
                 <h1 class="stname">${stname}</h1>
@@ -240,10 +244,7 @@
                 <li class="list-group-item">코멘트) ${comment}</li>
                 <li class="list-group-item">가격) ${price}</li>
             </ul>
-            <div class="card-body">
-                <a href="https://map.naver.com/v5/entry/place/37577974?placePath=%2Fhome&c=15,0,0,0,dh"
-                    class="card-link">지도 보기</a>
-            </div>`
+`
 
                             $('#Res_card').append(Res_html)
                             $('#Res_img').append(Res_img)
@@ -264,10 +265,23 @@
             formData.append("reviewstar_give", reviewstar);
             formData.append("review_comment_give", review_comment);
 
-            fetch('/matgo_list_detail/{{Resid}}', { method: "POST", body: formData, }).then((res) => res.json()).then((data) => {
-                window.location.reload()
-            });
+            fetch('/matgo_list_detail/{{Resid}}', { method: "POST", body: formData, })
+                .then((res) => res.json())
+                .then((data) => {
+                    window.location.reload()
+                });
 
+        }
+
+        function delete_matjip() {
+            let _id = Resid
+            console.log(Resid)
+            let formData = new FormData();
+            formData.append("_id_give", _id);
+            fetch('/matgo_list_detail/delete', { method: "POST", body: formData }).then((res) => res.json()).then((data) => {
+                alert(data['msg'])
+            })
+            
         }
         //별점 마킹 모듈 프로토타입으로 생성
         function Rating() {
@@ -428,8 +442,8 @@
                                 정말 삭제하시겠습니까?
                             </div>
                             <div class="modal-footer">
-                                <button type="button" onClick="location.href='/matgo'" class="btn btn-secondary"
-                                    data-bs-dismiss="modal">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+                                    onClick="delete_matjip(); location.href='/';">
                                     삭제하기
                                 </button>
                                 <button type="button" class="btn btn-primary" data-bs-dismiss="modal">닫기
