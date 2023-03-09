@@ -5,9 +5,9 @@ app = Flask(__name__)
 
 from pymongo import MongoClient
 #전체
-#client = MongoClient('mongodb+srv://sparta:test@cluster0.vnhcwoi.mongodb.net/?retryWrites=true&w=majority')
+client = MongoClient('mongodb+srv://sparta:test@cluster0.vnhcwoi.mongodb.net/?retryWrites=true&w=majority')
 #me
-client = MongoClient('mongodb+srv://sparta:test@cluster0.nlfpdbt.mongodb.net/?retryWrites=true&w=majority')
+#client = MongoClient('mongodb+srv://sparta:test@cluster0.nlfpdbt.mongodb.net/?retryWrites=true&w=majority')
 
 db = client.dbsparta
 
@@ -97,6 +97,11 @@ def matjip_post():
     db.matjip.insert_one(doc)
 
     return jsonify({'msg':'저장완료!'})
+
+@app.route('/write/<id>')
+def write_fix(id):
+    return render_template('write.html',Resid=id)
+
 
 @app.route('/matgo_list_detail/<id>')
 def matgo_list_detail(id):

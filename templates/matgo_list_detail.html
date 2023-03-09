@@ -194,6 +194,7 @@
         .rating .rate_radio:checked+label {
             background-color: #ff8;
         }
+
         .re {
             width: 600px;
 
@@ -210,7 +211,7 @@
     <script>
         let reviewstar = 0;
         let Resid = '{{Resid}}'
-        let ResReivew='{{ResReivew_get}}'
+        let ResReivew = '{{ResReivew_get}}'
         $(document).ready(function () {
             matgo_list_detail_get();
             show_matjip();
@@ -221,19 +222,26 @@
             fetch('/matgo_list_detail/Review')
                 .then((res) => res.json())
                 .then((data) => {
-                    
+
                     let rows = data['Review']
+                    rows.forEach((a) => {
+                        let Review_id = a["Res_id"]
+                        if (Review_id == Resid) {
+                            let Res_star = a['Res_star']
+                            let Res_review = a['Res_review']
+                        }
+                    })
                     console.log(rows)
 
-                })  
-                
+                })
+
         }
         //맛집 정보열기
         function show_matjip() {
             fetch('/matgo/matjips')
                 .then((res) => res.json())
                 .then((data) => {
-                    
+
                     let rows = data['result']
 
                     $('#Res_img').empty()
@@ -433,7 +441,7 @@
             <div class="btn-group me-2" role="group" aria-label="First group">
 
                 <button
-                    onclick="window.open('index.html','맛집 리스트 작성하기','width=800,height=700,location=no,status=no,scrollbars=yes');"
+                    onclick="window.open('http://127.0.0.1:5000/write/{{Resid}}','맛집 리스트 작성하기','width=800,height=700,location=no,status=no,scrollbars=yes');"
                     type="button" class="btn btn-outline-secondary">수정하기
                 </button>
                 <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal"
@@ -507,24 +515,24 @@
         <div class="card border-light mb-3" style="width: 600px;">
             <div class="card-header">별점⭐⭐⭐⭐⭐</div>
             <div class="card-body">
-              <h5 class="card-title">댓글</h5>
-              
+                <h5 class="card-title">댓글</h5>
+
             </div>
-          </div>  
-          <div class="card border-light mb-3" style="width: 600px;">
+        </div>
+        <div class="card border-light mb-3" style="width: 600px;">
             <div class="card-header">별점⭐⭐⭐⭐⭐</div>
             <div class="card-body">
-              <h5 class="card-title">댓글</h5>
-              
+                <h5 class="card-title">댓글</h5>
+
             </div>
-          </div>  
-          <div class="card border-light mb-3" style="width: 600px;">
+        </div>
+        <div class="card border-light mb-3" style="width: 600px;">
             <div class="card-header">별점⭐⭐⭐⭐⭐</div>
             <div class="card-body">
-              <h5 class="card-title">댓글</h5>
-              
+                <h5 class="card-title">댓글</h5>
+
             </div>
-          </div>                             
+        </div>
     </div>
 
     <!--팀소개-->
