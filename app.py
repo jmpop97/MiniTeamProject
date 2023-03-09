@@ -3,6 +3,7 @@ from bson import ObjectId
 from bson import json_util
 app = Flask(__name__)
 
+
 from pymongo import MongoClient
 #전체
 #client = MongoClient('mongodb+srv://sparta:test@cluster0.vnhcwoi.mongodb.net/?retryWrites=true&w=majority')
@@ -59,8 +60,7 @@ def objectIdDecoder(list):
 @app.route('/write')
 def write():
     return render_template('write.html')
-
-@app.route("/write/matjip", methods=["POST"])
+@app.route("/write", methods=["POST"])
 def matjip_post():
     url_receive = request.form['url_give']
     #가게이름
@@ -98,9 +98,9 @@ def matjip_post():
 
     return jsonify({'msg':'저장완료!'})
 
-@app.route('/write/<id>')
-def write_fix(id):
-    return render_template('write.html',Resid=id)
+#@app.route('/write/<id>')
+#def write_fix(id):
+#    return render_template('write.html',Resid=id)
 
 
 @app.route('/matgo_list_detail/<id>')

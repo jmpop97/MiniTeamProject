@@ -70,9 +70,8 @@
         }
 
         .myimage {
-            max-width: 1200px;
-            height: 350px;
-            width: 95%;
+            max-width: 700px;
+
 
             margin: 10px auto 0 auto;
         }
@@ -80,8 +79,7 @@
         .mycard {
             background-color: gray;
 
-            max-width: 1200px;
-            width: 95%;
+            width: 700px;
 
             margin: 10px auto 0 auto;
         }
@@ -107,8 +105,8 @@
 
 
         .wrap {
-            max-width: 600px;
-            margin: 0 auto;
+            max-width: 700px;
+            margin: 0 auto 0 auto;
             /* 화면 가운데로 */
             background-color: #fff;
             height: 100%;
@@ -196,7 +194,7 @@
         }
 
         .re {
-            width: 600px;
+            width: 800px;
 
             display: flex;
             flex-direction: column;
@@ -205,6 +203,11 @@
 
             margin: 20px auto 0px auto;
 
+        }
+
+        textarea {
+            height: 100px;
+            resize: none;
         }
     </style>
 
@@ -231,14 +234,14 @@
                             let Res_review = a['Res_review']
                             let Res_star_repeat = '⭐'.repeat(Res_star)
 
-                                Review_html = `        <div class="card border-light mb-3" style="width: 600px;">
+                            Review_html = `        <div class="card border-light mb-3" style="width: 700px;">
             <div class="card-header">${Res_star_repeat}</div>
             <div class="card-body">
                 <h5 class="card-title">${Res_review}</h5>
 
             </div>
         </div>`
-        $('#Reviewlist').append(Review_html)
+                            $('#Reviewlist').append(Review_html)
 
                         }
                     })
@@ -270,7 +273,7 @@
                             let star_repeat = '⭐'.repeat(ststar)
 
                             Res_img = `<img src="${url}"
-            style="height: 350px; max-width: 1200px">`
+            style="height: 350px; width: 700px">`
                             Res_html = `<div class="card-body">
                 <h1 class="stname">${stname}</h1>
                 <h5 class="stintro">${stintro}</h5>
@@ -425,7 +428,7 @@
     <!--이미지-->
     <div class="myimage" id="Res_img">
         <img src="https://cdn.pixabay.c om/photo/2014/08/14/14/21/shish-kebab-417994__340.jpg"
-            style="height: 350px; max-width: 1200px">
+            style="height: 350px; width: 700px">
     </div>
     <!--write에서 작성된 내용-->
     <div class="mycard">
@@ -523,21 +526,21 @@
         </form>
     </div>
     <div class="re" id="Reviewlist">
-        <div class="card border-light mb-3" style="width: 600px;">
+        <div class="card border-light mb-3" style="width: 700px;">
             <div class="card-header">별점⭐⭐⭐⭐⭐</div>
             <div class="card-body">
                 <h5 class="card-title">댓글</h5>
 
             </div>
         </div>
-        <div class="card border-light mb-3" style="width: 600px;">
+        <div class="card border-light mb-3" style="width: 700px;">
             <div class="card-header">별점⭐⭐⭐⭐⭐</div>
             <div class="card-body">
                 <h5 class="card-title">댓글</h5>
 
             </div>
         </div>
-        <div class="card border-light mb-3" style="width: 600px;">
+        <div class="card border-light mb-3" style="width: 700px;">
             <div class="card-header">별점⭐⭐⭐⭐⭐</div>
             <div class="card-body">
                 <h5 class="card-title">댓글</h5>
@@ -550,7 +553,7 @@
     <div class="bar">
         <div class="bartext">
             <div style="display: inline-block; vertical-align: top;">
-                <img src="../static/images/ARK.png" style="height: 100px; width: 100px;">
+                <img src="../static/images/ARK.jpg" style="height: 100px; width: 100px;">
             </div>
 
             <div style="display: inline-block;">
