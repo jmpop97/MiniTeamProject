@@ -104,6 +104,10 @@
         .bartext {
             color: white;
         }
+        textarea {
+            height: 60px;
+            resize: none;
+        }
 
     </style>
     <script>
@@ -132,7 +136,6 @@
         }
     </script>
 </head>
-
 <body>
     <!--대문-->
     <div class="mytitle">
@@ -157,12 +160,14 @@
 
         </ul>
     </div>
+
+<form>
  <!--작성내용-->
     <div class="mypost" id="post-box">
         <h4> - 작성하기 - </h4>
 <!--imgLink-->
         <div class="form-floating mb-3">
-            <input type="email" class="form-control" id="url" placeholder="name@example.com">
+            <textarea class="form-control" id="url" placeholder="Leave a comment here" required></textarea>
             <label for="url">이미지 URL</label>
         </div>
         <!--파일선택-->
@@ -173,30 +178,30 @@
         <div class="row g-2">
             <div class="col-md">
                 <div class="form-floating">
-                    <input type="email" class="form-control" id="stname" placeholder="name@example.com"
-                           value="">
+                                <textarea class="form-control" id="stname" required
+                                          placeholder="Leave a comment here"></textarea>
                     <label for="stname">가게 이름</label>
                 </div>
             </div>
             <div class="col-md">
                 <div class="form-floating">
-                    <input type="email" class="form-control" id="stintro" placeholder="name@example.com"
-                           value="">
-                    <label for="stintro">가게 소개</label>
+                                <textarea class="form-control" id="stintro" required
+                                          placeholder="Leave a comment here"></textarea>
+                    <label for="stintro">음식 종류</label>
                 </div>
             </div>
         </div>
  <!--주소-->
         <div class="form-floating">
-            <textarea class="form-control" placeholder="Leave a comment here" id="stadd"
-                    style="height: 100px"></textarea>
+                    <textarea class="form-control" placeholder="Leave a comment here" id="stadd" required
+                              style="height: 100px"></textarea>
             <label for="stadd">주소</label>
         </div>
  <!--별점-->
         <div class="input-group mb-3">
             <label class="input-group-text" for="ststar">별점</label>
-            <select class="form-select" id="ststar">
-                <option selected>--선택하기--</option>
+            <select class="form-select" id="ststar" required>
+                <option selected disabled value="">--선택하기--</option>
                 <option value="1">⭐</option>
                 <option value="2">⭐⭐</option>
                 <option value="3">⭐⭐⭐</option>
@@ -206,22 +211,24 @@
         </div>
  <!--코멘트-->
         <div class="form-floating">
-            <textarea class="form-control" placeholder="Leave a comment here" id="comment"
-                      style="height: 100px"></textarea>
+                    <textarea class="form-control" placeholder="Leave a comment here" id="comment" required
+                              style="height: 100px"></textarea>
             <label for="comment">코멘트</label>
         </div>
  <!--가격-->
         <div class="form-floating">
-            <textarea class="form-control" placeholder="Leave a comment here" id="price"
-                      style="height: 100px"></textarea>
+            <textarea class="form-control" placeholder="Leave a comment here" id="price"></textarea>
             <label for="price">가격</label>
         </div>
-<!--저장&닫기-->
+
+        <!--저장&닫기-->
         <div class="mybtn">
-            <button onclick="save_matjip()" type="button" class="btn btn-outline-dark">작성</button>
+            <button onclick="save_matjip()" type="submit" class="btn btn-outline-dark" >작성</button>
             <button onClick="history.back();" type="button" class="btn btn-outline-dark">취소</button>
         </div>
     </div>
+</form>
+
 <!--팀소개-->
     <div class="bar">
         <div class="bartext">

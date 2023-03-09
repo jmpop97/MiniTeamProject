@@ -75,10 +75,10 @@ def matgo_list_detail(id):
 
     return render_template('matgo_list_detail.html',Resid=id)
 
-@app.route('/matgo_list_detail/<id>', methods=["GET"])
-def matgo_list_detail_get(id):
-    ids={'review_id':id}
-    return jsonify({'result': ids})
+#@app.route('/matgo_list_detail/<id>', methods=["GET"])
+#def matgo_list_detail_get(id):
+#    ids={'review_id':id}
+#    return jsonify({'result': ids})
 
 @app.route('/matgo_list_detail/<id>', methods=["POST"])
 def matgo_list_detail_post(id):
