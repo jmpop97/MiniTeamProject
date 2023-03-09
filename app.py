@@ -2,7 +2,7 @@ from flask import Flask, render_template, request, jsonify
 app = Flask(__name__)
 
 from pymongo import MongoClient
-client = MongoClient('mongodb+srv://sparta:test@cluster0.vnhcwoi.mongodb.net/?retryWrites=true&w=majority')
+client = MongoClient('mongodb+srv://sparta:test@cluster0.nlfpdbt.mongodb.net/?retryWrites=true&w=majority')
 db = client.dbsparta
 
 import requests
@@ -70,23 +70,28 @@ def matjip_post():
 
     return jsonify({'msg':'저장완료!'})
 
-
 @app.route('/matgo_list_detail/<id>')
 def matgo_list_detail(id):
-    return render_template('matgo_list_detail.html')
+
+    return render_template('matgo_list_detail.html',Resid=id)
+
+@app.route('/matgo_list_detail/<id>', methods=["GET"])
+def matgo_list_detail_get(id):
+    ids={'review_id':id}
+    return jsonify({'result': ids})
 
 @app.route('/matgo_list_detail/<id>', methods=["POST"])
 def matgo_list_detail_post(id):
     id_receive=id
-    star_receive = request.form['star']
-    #가게이름
-    review_receive = request.form['review']
+    star_receive = request.form['reviewstar_give']
+    review_receive = request.form['review_comment_give']
     doc={
         'Res_id':id_receive,
         'Res_star': star_receive,
         'Res_review': review_receive
     }
     db.Resinfo.insert_one(doc)
+    return jsonify({'msg':'저장완료!'})
 
 
 

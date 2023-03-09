@@ -12,7 +12,7 @@
             integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
             crossorigin="anonymous"></script>
 
-    <title>맛Go : 나의 맛집 리스트</title>
+    <title>맛Go : 나의 맛집 리스트 {{Resid}} </title>
 
     <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
 
@@ -196,8 +196,34 @@
     </style>
 
     <script>
-        
+        let reviewstar=0;
+        let Resid='{{Resid}}'
 
+
+        $(document).ready(function(){
+        load_review_data()
+        })
+
+
+        //review데이터 열기
+    function load_review_data(){
+        console.log(Resid)
+    }
+    //리뷰 저장
+    function save_review(){
+        let review_star=reviewstar
+        let review_comment=$('#review_comment').val()
+        
+        let formData= new FormData();
+
+        formData.append("reviewstar_give",reviewstar);
+        formData.append("review_comment_give",review_comment);
+
+        fetch('/matgo_list_detail/{{Resid}}', { method: "POST", body: formData, }).then((res) => res.json()).then((data) => {
+        window.location.reload()
+      });
+
+    }
         //별점 마킹 모듈 프로토타입으로 생성
         function Rating() {
         };
@@ -220,6 +246,7 @@
             //별점선택 이벤트 리스너
             document.querySelector('.rating').addEventListener('click', function (e) {
                 let elem = e.target;
+                reviewstar=elem.value;
                 if (elem.classList.contains('rate_radio')) {
                     rating.setRate(parseInt(elem.value));
                 }
@@ -391,11 +418,11 @@
                 </div>
             </div>
             <div class="review_contents">
-                <div class="warning_msg">5자 이상으로 작성해 주세요.</div>
-                <textarea rows="10" class="review_textarea"></textarea>
+                <div class="warning_msg" >5자 이상으로 작성해 주세요.</div>
+                <textarea rows="10" class="review_textarea" id="review_comment"></textarea>
             </div>
             <div class="cmd">
-                <button type="button" class="btn btn-outline-secondary">등록하기
+                <button onclick="save_review()" type="button" class="btn btn-outline-secondary">등록하기
                 </button>
             </div>
         </form>
