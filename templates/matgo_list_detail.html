@@ -210,25 +210,26 @@
     <script>
         let reviewstar = 0;
         let Resid = '{{Resid}}'
+        let ResReivew='{{ResReivew_get}}'
         $(document).ready(function () {
-            //    matgo_list_detail_get();
+
+            //console.log(ResReivew)
             show_matjip();
         });
         //review데이터 열기
         function matgo_list_detail_get() {
-            fetc('/matgo_list_detail/{{Resid}}')
-                .then((res) => res.json())
-                .then((data) => {
-                    console.log(data)
-                })
+
+                
+                
         }
         //맛집 정보열기
         function show_matjip() {
             fetch('/matgo/matjips')
                 .then((res) => res.json())
                 .then((data) => {
-
+                    
                     let rows = data['result']
+
                     $('#Res_img').empty()
                     $('#Res_card').empty()
                     rows.forEach((a) => {
@@ -283,18 +284,16 @@
                 });
 
         }
-
+        //맛집삭제하기
         function delete_matjip() {
             let _id = Resid
             console.log(Resid)
             let formData = new FormData();
             formData.append("_id_give", _id);
-            fetch('/matgo_list_detail/delete', { method: "POST", body: formData }).then((res) => res.json()).then((data) => {
+            fetch('/matgo_list_detail/delete', { method: "DELETE", body: formData }).then((res) => res.json()).then((data) => {
                 alert(data['msg'])
             })
-            
-        }
-        //별점 마킹 모듈 프로토타입으로 생성
+        }//별점 마킹 모듈 프로토타입으로 생성
         function Rating() {
         };
         Rating.prototype.rate = 0;

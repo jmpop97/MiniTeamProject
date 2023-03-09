@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request, jsonify
+from bson import ObjectId
 from bson import json_util
 app = Flask(__name__)
 
@@ -6,7 +7,7 @@ from pymongo import MongoClient
 #전체
 client = MongoClient('mongodb+srv://sparta:test@cluster0.vnhcwoi.mongodb.net/?retryWrites=true&w=majority')
 #me
-# client = MongoClient('mongodb+srv://sparta:test@cluster0.nlfpdbt.mongodb.net/?retryWrites=true&w=majority')
+#client = MongoClient('mongodb+srv://sparta:test@cluster0.nlfpdbt.mongodb.net/?retryWrites=true&w=majority')
 
 db = client.dbsparta
 
@@ -99,13 +100,13 @@ def matjip_post():
 
 @app.route('/matgo_list_detail/<id>')
 def matgo_list_detail(id):
+    ResReview = db.Resinfo.find({'Res_id':id})
+    return render_template('matgo_list_detail.html',Resid=id,ResReivew_get=ResReview)
 
-    return render_template('matgo_list_detail.html',Resid=id)
-
-@app.route('/matgo_list_detail/<id>', methods=["GET"])
-def matgo_list_detail_get(id):
-    ResReview = db.Resinfo.find_one({'Res_id':id})
-    return jsonify({'ResReview': ResReview})
+#@app.route('/matgo_list_detail/<id>', methods=["GET"])
+#def matgo_list_detail_get(id):
+##    ResReview = db.Resinfo.find_one({'Res_id':id})
+#    return jsonify({'ResReview': ResReview})
 
 @app.route('/matgo_list_detail/<id>', methods=["POST"])
 def matgo_list_detail_post(id):
@@ -121,18 +122,13 @@ def matgo_list_detail_post(id):
     return jsonify({'msg':'저장완료!'})
 
 # _id 해당 맛집 지우기
-@app.route('/matgo_list_detail/delete', methods=["POST"])
+# _id 해당 맛집 지우기
+@app.route('/matgo_list_detail/delete', methods=["DELETE"])
 def delete_post():
     _id_receive = request.form.get('_id_give')
-    db.matjips.delete_one({'_id': _id_receive})
+    print(_id_receive)
+    db.matjip.delete_one({'_id': ObjectId(_id_receive)})
     return jsonify({'msg': '삭제 완료'})
-
-
-
-
-
-
-
 
 
 if __name__ == '__main__':
