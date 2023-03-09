@@ -2,7 +2,7 @@ from flask import Flask, render_template, request, jsonify
 app = Flask(__name__)
 
 from pymongo import MongoClient
-client = MongoClient('mongodb+srv://sparta:test@cluster0.nlfpdbt.mongodb.net/?retryWrites=true&w=majority')
+client = MongoClient('mongodb+srv://sparta:test@cluster0.vnhcwoi.mongodb.net/?retryWrites=true&w=majority')
 db = client.dbsparta
 
 import requests
@@ -77,8 +77,7 @@ def matgo_list_detail(id):
 
 #@app.route('/matgo_list_detail/<id>', methods=["GET"])
 #def matgo_list_detail_get(id):
-#    ids={'review_id':id}
-#    return jsonify({'result': ids})
+#    return jsonify({'result': })
 
 @app.route('/matgo_list_detail/<id>', methods=["POST"])
 def matgo_list_detail_post(id):

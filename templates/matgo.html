@@ -475,11 +475,10 @@
                 elem.setAttribute('rel', 'sidebar');
                 elem.click();
             }
-        }
-        sharePage = () => {
+        }sharePage = () => {
             const shareObject = {
                 title: '공유할 콘텐츠의 제목',
-                text: 'WEBISFREE.com',
+                text: '127.0.0.1:5500/matgo.html',
                 url: window.location.href,
             };
 
@@ -597,6 +596,15 @@
     <div class="food">
         <button type="button" class="btn btn-outline-primary">나의 맛집</button>
     </div>
+
+    <!--작성하기-->
+    <div class="mybutton">
+        <div class="btn-toolbar mb-3" role="toolbar" aria-label="Toolbar with button groups">
+            <div class="btn-group me-2" role="group" aria-label="First group">
+                <button onClick="location.href='write.html'" type="button" class="btn btn-light">작성하기
+            </div>
+        </div>
+    </div>
     <!--대문-->
     <div class="mytitle">
         <h3>폭팔적인 리뷰와 필요한 정보 공유!</h3>
@@ -612,18 +620,9 @@
     </div>
     <!--공유하기-->
     <div class="star">
-        <button type="button" class="btn btn-outline-primary">공유하기</button>
+        <button onclick="sharePage()" class="btn btn-outline-secondary">공유하기</button>
     </div>
-    <!--작성하기-->
-    <div class="mybutton">
-        <div class="btn-toolbar mb-3" role="toolbar" aria-label="Toolbar with button groups">
-            <div class="btn-group me-2" role="group" aria-label="First group">
-                <button onClick="location.href='/write'" type="button" class="btn btn-outline-secondary">작성하기
-            </div>
-        </div>
-    
     <!--위치이상함-->
-    </div>
     <div class="min">
         <img src="https://cdn.pixabay.com/photo/2020/06/29/10/55/pizza-5352321__340.png" alt="로고" width="340px"
             height="300px" \>
