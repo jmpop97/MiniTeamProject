@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request, jsonify
+from bson import json_util
 app = Flask(__name__)
 
 from pymongo import MongoClient
@@ -18,14 +19,36 @@ def main():
 def matgo():
     return render_template('matgo.html')
 
+# 맛집 조회 + 디테일 들어가기
 @app.route("/matgo/matjips", methods=["GET"])
 def matgo_get():
     # 여러개 찾기 - 예시 ( _id 값은 제외하고 출력)
-    all_matjips = list(db.matjip.find({},{'_id':False}))
-    # all_comments = list(db.matjip.find({},{'_id':False})) 여기서 디테일 연결 테스트
-
-    return jsonify({'result': all_matjips})
-
+    # all_matjips = list(db.matjip.find({},{'_id':False}))
+    all_matjips = list(db.matjip.find({}))
+    # all_matjips = list(db.matjip.find(  {}
+                                        # {
+                                            # str(result.get('_id'))
+                                            # ObjectId idObj = (ObjectId)obj.get("_id");
+                                            # String _id = idObj.toString()
+                                        # }
+                                    #)
+                        #)
+    # all_matjips = list(db.matjip.find(
+    #     {},{
+    #         '_id': str(objectIdDecoder({"_id": ObjectId(id)}))
+    #     }
+    #))
+    # return jsonify({'result': all_matjips})  # render_template와 jsonify의 차이...
+    return json_util.dumps({'result': all_matjips})
+    # return render_template({'result': all_matjips})
+    # return json.dumps({'result': all_matjips})
+# objectId 찾기
+def objectIdDecoder(list):
+  results=[]
+  for document in list:
+    document['_id'] = str(document['_id'])
+    results.append(document)
+  return results
 
 
 @app.route('/write')

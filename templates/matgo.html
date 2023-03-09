@@ -46,7 +46,7 @@
             color: white;
 
             height: 500px;
-            
+
 
             margin: 60px 0px 20px 0px;
 
@@ -475,7 +475,7 @@
                 elem.setAttribute('rel', 'sidebar');
                 elem.click();
             }
-        }sharePage = () => {
+        } sharePage = () => {
             const shareObject = {
                 title: '공유할 콘텐츠의 제목',
                 text: '127.0.0.1:5500/matgo.html',
@@ -540,24 +540,25 @@
                 $('#icon').append(temp_html)
             });
         }
-        //맛집list불러오기
+
+        //맛집리스트 불러오기
         function show_matjip() {
-            fetch('/matgo/matjips').then((res) => res.json()).then((data) => {
-                let rows = data['result']
-                $('#matjip-list').empty()
-                rows.forEach((a) => {
-
-                    let url = a['url']
-                    let stname = a['stname']
-                    let stintro = a['stintro']
-                    let stadd = a['stadd']
-                    let ststar = a['ststar']
-                    let comment = a['comment']
-                    let price = a['price']
-
-                    let star_repeat = '⭐'.repeat(ststar)
-
-                    let temp_html = `<div class="col">
+            fetch('/matgo/matjips')
+                .then((res) => res.json())
+                .then((data) => {
+                    let rows = data['result']
+                    $('#matjip-list').empty()
+                    rows.forEach((a) => {
+                        let _id = a['_id']['$oid']
+                        let url = a['url']
+                        let stname = a['stname']
+                        let stintro = a['stintro']
+                        let stadd = a['stadd']
+                        let ststar = a['ststar']
+                        let comment = a['comment']
+                        let price = a['price']
+                        let star_repeat = ':별:'.repeat(ststar)
+                        let temp_html = `<div class="col">
                                         <div class="card h-100">
                                             <img src="${url}"
                                                 class="card-img-top" alt="...">
@@ -567,17 +568,18 @@
                                                 <p class="address">${stintro}</p>
                                                 <p>${star_repeat}</p>
                                                 <p class="myreview">리뷰(4)<미구현></p>
-                                                <a href="matgo_list_detail.html" class="btn btn-primary">정보 더보기</a>
+                                                <a href="/matgo_list_detail" class="btn btn-primary" value="${_id}">정보 더보기</a>
+                                                <!-- <form method="get">
+                                                <input id="id" type="submit" value="${_id}"> -->
                                             </div>
                                             <div class="card-footer">
-                                                <small class="text-muted">Last updated 3 mins ago</small>
+                                                <small class="text-muted">${_id}</small>
                                             </div>
                                         </div>
                                     </div>`
-                    console.log(temp_html)
-                    $('#matjip-list').append(temp_html)
+                        $('#matjip-list').append(temp_html)
+                    })
                 })
-            })
         }
     </script>
 </head>
@@ -586,11 +588,13 @@
     <!--날씨-->
     <div class="weather">
         서울<span id="temp">연동이 되지 않음</span>
-        │날씨<span id="icon"></span>
+        날씨<span id="icon"></span>
     </div>
     <!--로고-->
     <div class="logo">
-        <img src="../static/images/ARK.jpg" alt="로고" width="130px" height="130px" \>
+        <a href="http://localhost:5000/matgo">
+            <img src="../static/images/ARK.jpg" alt="로고" width="130px" height="130px" \>
+        </a>
     </div>
     <!--나의맛집-->
     <div class="food">

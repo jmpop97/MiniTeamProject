@@ -201,7 +201,9 @@
 
 
         $(document).ready(function(){
-        load_review_data()
+            fetch('/matgo_list_detail/<id>').then((res) => res.json()).then((data) => {
+
+            })
         })
 
 
@@ -425,6 +427,8 @@
                 <button onclick="save_review()" type="button" class="btn btn-outline-secondary">등록하기
                 </button>
             </div>
+
+        
         </form>
     </div>
     <!--팀소개-->
