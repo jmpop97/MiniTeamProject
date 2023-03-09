@@ -6,11 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-            crossorigin="anonymous"></script>
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
 
     <title>맛Go : 나의 맛집 리스트 {{Resid}} </title>
 
@@ -37,11 +37,11 @@
             justify-content: center;
         }
 
-        .mybtn > button {
+        .mybtn>button {
             margin-right: 10px;
         }
 
-        .mbutton > button {
+        .mbutton>button {
             margin-right: 5px;
         }
 
@@ -108,20 +108,22 @@
 
         .wrap {
             max-width: 1200px;
-            margin: 0 auto; /* 화면 가운데로 */
+            margin: 0 auto;
+            /* 화면 가운데로 */
             background-color: #fff;
             height: 100%;
             padding: 0px;
             box-sizing: border-box;
 
         }
-        .cmd{
+
+        .cmd {
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
 
-            
+
 
         }
 
@@ -144,7 +146,7 @@
             display: none;
         }
 
-        .rating .rate_radio + label {
+        .rating .rate_radio+label {
             position: relative;
             display: inline-block;
             margin-left: -4px;
@@ -158,7 +160,7 @@
             background-color: #f0f0f0;
         }
 
-        .rating .rate_radio:checked + label {
+        .rating .rate_radio:checked+label {
             background-color: #ff8;
         }
 
@@ -175,7 +177,7 @@
             border: 1px solid #e0e0e0;
         }
 
-        .rating .rate_radio + label {
+        .rating .rate_radio+label {
             position: relative;
             display: inline-block;
             margin-left: -4px;
@@ -189,43 +191,57 @@
             background-color: #f0f0f0;
         }
 
-        .rating .rate_radio:checked + label {
+        .rating .rate_radio:checked+label {
             background-color: #ff8;
         }
-
     </style>
 
     <script>
-        let reviewstar=0;
-        let Resid='{{Resid}}'
-
-
-        $(document).ready(function(){
-            fetch('/matgo_list_detail/<id>').then((res) => res.json()).then((data) => {
-
-            })
-        })
-
-
+        let reviewstar = 0;
+        let Resid = '{{Resid}}'
+        $(document).ready(function () {
+            show_matjip();
+        });
         //review데이터 열기
-    function load_review_data(){
-        console.log(Resid)
-    }
-    //리뷰 저장
-    function save_review(){
-        let review_star=reviewstar
-        let review_comment=$('#review_comment').val()
-        
-        let formData= new FormData();
+        function load_review_data() {
+            console.log(Resid)
+        }
+        //맛집 정보열기
+        function show_matjip() {
+            fetch('/matgo/matjips')
+                .then((res) => res.json())
+                .then((data) => {
+                    let rows = data['result']
+                    $('#matjip-list').empty()
+                    rows.forEach((a) => {
+                        let _id = a['_id']['$oid']
+                        let url = a['url']
+                        let stname = a['stname']
+                        let stintro = a['stintro']
+                        let stadd = a['stadd']
+                        let ststar = a['ststar']
+                        let comment = a['comment']
+                        let price = a['price']
+                        let star_repeat = '⭐'.repeat(ststar)
+                        console.log(stname)
+                    })
+                })
+        }
+        //리뷰 저장
+        function save_review() {
+            let review_star = reviewstar
+            let review_comment = $('#review_comment').val()
 
-        formData.append("reviewstar_give",reviewstar);
-        formData.append("review_comment_give",review_comment);
+            let formData = new FormData();
 
-        fetch('/matgo_list_detail/{{Resid}}', { method: "POST", body: formData, }).then((res) => res.json()).then((data) => {
-        window.location.reload()
-      });
+            formData.append("reviewstar_give", reviewstar);
+            formData.append("review_comment_give", review_comment);
 
-    }
+            fetch('/matgo_list_detail/{{Resid}}', { method: "POST", body: formData, }).then((res) => res.json()).then((data) => {
+                window.location.reload()
+            });
+
+        }
         //별점 마킹 모듈 프로토타입으로 생성
         function Rating() {
         };
@@ -248,7 +264,7 @@
             //별점선택 이벤트 리스너
             document.querySelector('.rating').addEventListener('click', function (e) {
                 let elem = e.target;
-                reviewstar=elem.value;
+                reviewstar = elem.value;
                 if (elem.classList.contains('rate_radio')) {
                     rating.setRate(parseInt(elem.value));
                 }
@@ -336,7 +352,8 @@
     </div>
     <!--이미지-->
     <div class="myimage">
-        <img src="https://cdn.pixabay.com/photo/2014/08/14/14/21/shish-kebab-417994__340.jpg" style="height: 350px; max-width: 1200px">
+        <img src="https://cdn.pixabay.com/photo/2014/08/14/14/21/shish-kebab-417994__340.jpg"
+            style="height: 350px; max-width: 1200px">
     </div>
     <!--write에서 작성된 내용-->
     <div class="mycard">
@@ -352,7 +369,8 @@
                 <li class="list-group-item">가격) 약 30,000원</li>
             </ul>
             <div class="card-body">
-                <a href="https://map.naver.com/v5/entry/place/37577974?placePath=%2Fhome&c=15,0,0,0,dh" class="card-link">지도 보기</a>
+                <a href="https://map.naver.com/v5/entry/place/37577974?placePath=%2Fhome&c=15,0,0,0,dh"
+                    class="card-link">지도 보기</a>
             </div>
         </div>
     </div>
@@ -361,29 +379,30 @@
         <div class="btn-toolbar mb-3" role="toolbar" aria-label="Toolbar with button groups">
             <div class="btn-group me-2" role="group" aria-label="First group">
 
-                <button onclick="window.open('index.html','맛집 리스트 작성하기','width=800,height=700,location=no,status=no,scrollbars=yes');"
-                        type="button" class="btn btn-outline-secondary">수정하기
+                <button
+                    onclick="window.open('index.html','맛집 리스트 작성하기','width=800,height=700,location=no,status=no,scrollbars=yes');"
+                    type="button" class="btn btn-outline-secondary">수정하기
                 </button>
                 <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal"
-                        data-bs-target="#exampleModal">삭제하기
+                    data-bs-target="#exampleModal">삭제하기
                 </button>
 
                 <!-- Modal -->
-                <div class="modal fade" id="exampleModal" tabindex="-1"
-                     aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                    aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
                                 <h5 class="modal-title" id="exampleModalLabel">게시글 삭제하기</h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                        aria-label="Close"></button>
+                                    aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
                                 정말 삭제하시겠습니까?
                             </div>
                             <div class="modal-footer">
-                                <button type="button" onClick="location.href='/matgo'"
-                                        class="btn btn-secondary" data-bs-dismiss="modal">
+                                <button type="button" onClick="location.href='/matgo'" class="btn btn-secondary"
+                                    data-bs-dismiss="modal">
                                     삭제하기
                                 </button>
                                 <button type="button" class="btn btn-primary" data-bs-dismiss="modal">닫기
@@ -397,9 +416,9 @@
     </div>
     <!--리뷰-->
     <div class="wrap">
-        <h1>리뷰</h1> 
+        <h1>리뷰</h1>
         <form name="reviewform" class="reviewform" method="post" action="/save">
-            <input type="hidden" name="rate" id="rate" value="0"/>
+            <input type="hidden" name="rate" id="rate" value="0" />
             <p class="title_star">별점과 리뷰를 남겨주세요.</p>
 
 
@@ -420,7 +439,7 @@
                 </div>
             </div>
             <div class="review_contents">
-                <div class="warning_msg" >5자 이상으로 작성해 주세요.</div>
+                <div class="warning_msg">5자 이상으로 작성해 주세요.</div>
                 <textarea rows="10" class="review_textarea" id="review_comment"></textarea>
             </div>
             <div class="cmd">
@@ -428,15 +447,14 @@
                 </button>
             </div>
 
-        
+
         </form>
     </div>
     <!--팀소개-->
     <div class="bar">
         <div class="bartext">
             <div style="display: inline-block; vertical-align: top;">
-                <img src="../static/images/ARK.jpg"
-                     style="height: 100px; width: 100px;">
+                <img src="../static/images/ARK.png" style="height: 100px; width: 100px;">
             </div>
 
             <div style="display: inline-block;">
@@ -451,4 +469,5 @@
 
 
 </body>
+
 </html>
