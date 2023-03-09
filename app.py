@@ -5,9 +5,9 @@ app = Flask(__name__)
 
 from pymongo import MongoClient
 #전체
-client = MongoClient('mongodb+srv://sparta:test@cluster0.vnhcwoi.mongodb.net/?retryWrites=true&w=majority')
+#client = MongoClient('mongodb+srv://sparta:test@cluster0.vnhcwoi.mongodb.net/?retryWrites=true&w=majority')
 #me
-#client = MongoClient('mongodb+srv://sparta:test@cluster0.nlfpdbt.mongodb.net/?retryWrites=true&w=majority')
+client = MongoClient('mongodb+srv://sparta:test@cluster0.nlfpdbt.mongodb.net/?retryWrites=true&w=majority')
 
 db = client.dbsparta
 
@@ -100,13 +100,13 @@ def matjip_post():
 
 @app.route('/matgo_list_detail/<id>')
 def matgo_list_detail(id):
-    ResReview = db.Resinfo.find({'Res_id':id})
-    return render_template('matgo_list_detail.html',Resid=id,ResReivew_get=ResReview)
+    return render_template('matgo_list_detail.html',Resid=id)
 
-#@app.route('/matgo_list_detail/<id>', methods=["GET"])
-#def matgo_list_detail_get(id):
-##    ResReview = db.Resinfo.find_one({'Res_id':id})
-#    return jsonify({'ResReview': ResReview})
+@app.route("/matgo_list_detail/Review", methods=["GET"])
+def Review_get():
+    all_review = list(db.Resinfo.find({}))
+    return json_util.dumps({'Review': all_review})
+    
 
 @app.route('/matgo_list_detail/<id>', methods=["POST"])
 def matgo_list_detail_post(id):
@@ -121,7 +121,7 @@ def matgo_list_detail_post(id):
     db.Resinfo.insert_one(doc)
     return jsonify({'msg':'저장완료!'})
 
-# _id 해당 맛집 지우기
+
 # _id 해당 맛집 지우기
 @app.route('/matgo_list_detail/delete', methods=["DELETE"])
 def delete_post():

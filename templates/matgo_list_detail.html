@@ -212,14 +212,20 @@
         let Resid = '{{Resid}}'
         let ResReivew='{{ResReivew_get}}'
         $(document).ready(function () {
-
-            //console.log(ResReivew)
+            matgo_list_detail_get();
             show_matjip();
         });
         //review데이터 열기
         function matgo_list_detail_get() {
 
-                
+            fetch('/matgo_list_detail/Review')
+                .then((res) => res.json())
+                .then((data) => {
+                    
+                    let rows = data['Review']
+                    console.log(rows)
+
+                })  
                 
         }
         //맛집 정보열기
