@@ -197,7 +197,7 @@
 
         //맛집 저장
         function fix_matjip() {
-            
+
             let url = $('#url').val()
             let stname = $('#stname').val()
             let stintro = $('#stintro').val()
@@ -221,10 +221,13 @@
                 alert('빈칸을 채워주세요!');
             } else {
                 fetch('/fix', { method: "POST", body: formData }).then((res) => res.json()).then((data) => {
-                    alert(data['msg']); location.href = "matgo"
+                    alert(data['msg']);
+
                 })
+
             }
         }
+
     </script>
 </head>
 
