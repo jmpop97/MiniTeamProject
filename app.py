@@ -136,9 +136,11 @@ def matjip_fix():
         'price': price_receive        
     }
 
-    # 저장
-    db.matjip.update_one({'_id':id_receive},doc)
-
+    # 수정
+    print(id_receive)
+    print(id_receive)
+    db.matjip.update_one({'_id':ObjectId(id_receive)},{'$set': doc})
+    print(id_receive)
     return jsonify({'msg':'저장완료!'})
 
 @app.route('/matgo_list_detail/<id>')
@@ -153,7 +155,7 @@ def Review_get():
 
 @app.route('/matgo_list_detail/<id>', methods=["POST"])
 def matgo_list_detail_post(id):
-    id_receive=id
+    id_receive=id['id_give']
     star_receive = request.form['reviewstar_give']
     review_receive = request.form['review_comment_give']
     doc={
@@ -169,7 +171,7 @@ def matgo_list_detail_post(id):
 @app.route('/matgo_list_detail/delete', methods=["DELETE"])
 def delete_post():
     _id_receive = request.form.get('_id_give')
-    print(_id_receive)
+    
     db.matjip.delete_one({'_id': ObjectId(_id_receive)})
     return jsonify({'msg': '삭제 완료'})
 

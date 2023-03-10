@@ -136,7 +136,7 @@
                 alert('빈칸을 채워주세요!');
             } else {
                 fetch('/write', { method: "POST", body: formData }).then((res) => res.json()).then((data) => {
-                    alert(data['msg']); location.href = "matgo"
+                    alert(data['msg']); location.replace("matgo")
                 })
             }
         }
