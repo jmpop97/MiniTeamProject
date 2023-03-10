@@ -101,7 +101,7 @@
         let Resid = '{{Resid}}'
         $(document).ready(function () {
 
-            show_matjip();
+        show_matjip();
 
         });
         //수정전 데이터 가져오기
@@ -127,7 +127,7 @@
                             let price = a['price']
                             let star_repeat = '⭐'.repeat(ststar)
 
-                            Res_html = `<!--imgLink-->
+                            Res_html_star_b = `<!--imgLink-->
             <div class="form-floating">
                 <textarea class="form-control" placeholder="Leave a comment here" id="url"
                     required>${url}</textarea>
@@ -160,13 +160,57 @@
             <div class="input-group mb-3">
                 <label class="input-group-text" for="ststar">별점</label>
                 <select class="form-select" id="ststar" required> 
-                    <option selected disabled value="">--선택하기--</option>
+                    <option selected disabled value="">--선택하기--</option>`
+
+                            Res_html_star = `
                     <option value="1">⭐</option>
                     <option value="2">⭐⭐</option>
                     <option value="3">⭐⭐⭐</option>
                     <option value="4">⭐⭐⭐⭐</option>
                     <option value="5">⭐⭐⭐⭐⭐</option>
-                   
+                   `
+                            if (ststar == 1) {
+                                Res_html_star = `
+                    <option value="1" selected>⭐</option>
+                    <option value="2">⭐⭐</option>
+                    <option value="3">⭐⭐⭐</option>
+                    <option value="4">⭐⭐⭐⭐</option>
+                    <option value="5">⭐⭐⭐⭐⭐</option>
+                   `}
+                            if (ststar == 2) {
+                                Res_html_star = `
+                    <option value="1">⭐</option>
+                    <option value="2" selected>⭐⭐</option>
+                    <option value="3">⭐⭐⭐</option>
+                    <option value="4">⭐⭐⭐⭐</option>
+                    <option value="5">⭐⭐⭐⭐⭐</option>
+                   `}
+                            if (ststar == 3) {
+                                Res_html_star = `
+                    <option value="1">⭐</option>
+                    <option value="2">⭐⭐</option>
+                    <option value="3" selected>⭐⭐⭐</option>
+                    <option value="4">⭐⭐⭐⭐</option>
+                    <option value="5">⭐⭐⭐⭐⭐</option>
+                   `}
+                            if (ststar == 4) {
+                                Res_html_star = `
+                    <option value="1">⭐</option>
+                    <option value="2">⭐⭐</option>
+                    <option value="3">⭐⭐⭐</option>
+                    <option value="4" selected>⭐⭐⭐⭐</option>
+                    <option value="5">⭐⭐⭐⭐⭐</option>
+                   `}
+                            if (ststar == 5) {
+                                Res_html_star = `
+                    <option value="1">⭐</option>
+                    <option value="2">⭐⭐</option>
+                    <option value="3">⭐⭐⭐</option>
+                    <option value="4">⭐⭐⭐⭐</option>
+                    <option value="5" selected>⭐⭐⭐⭐⭐</option>
+                   `}
+
+                            Res_html_star_a = `
                 </select>
             </div>
             <!--코멘트-->
@@ -186,7 +230,7 @@
                 <button onClick="windowclose();" type="button" class="btn btn-outline-dark">취소</button>
             </div>
 `
-
+                            Res_html = Res_html_star_b + Res_html_star + Res_html_star_a
                             $('#post-box').append(Res_html)
                         }
 
@@ -224,14 +268,18 @@
                     alert(data['msg']);
 
                 })
-                opener.location.href = "/matgo_list_detail/"+Resid;
+                opener.location.href = "/matgo_list_detail/" + Resid;
                 window.close()
 
             }
         }
         //닫기
-        function windowclose(){
+        function windowclose() {
             window.close()
+        }
+
+        function inputstar() {
+
         }
     </script>
 </head>
