@@ -183,7 +183,7 @@
             <!--저장&닫기-->
             <div class="mybtn">
                 <button onclick="fix_matjip()" type="submit" class="btn btn-outline-dark">수정</button>
-                <button onClick="history.back();" type="button" class="btn btn-outline-dark">취소</button>
+                <button onClick="windowclose();" type="button" class="btn btn-outline-dark">취소</button>
             </div>
 `
 
@@ -195,7 +195,7 @@
                 })
         }
 
-        //맛집 저장
+        //맛집 수정
         function fix_matjip() {
 
             let url = $('#url').val()
@@ -224,10 +224,15 @@
                     alert(data['msg']);
 
                 })
+                opener.location.href = "/matgo_list_detail/"+Resid;
+                window.close()
 
             }
         }
-
+        //닫기
+        function windowclose(){
+            window.close()
+        }
     </script>
 </head>
 
@@ -293,7 +298,7 @@
             <!--저장&닫기-->
             <div class="mybtn">
                 <button onclick="fix_matjip()" type="submit" class="btn btn-outline-dark">수정</button>
-                <button onClick="history.back();" type="button" class="btn btn-outline-dark">취소</button>
+                <button onClick="windowclose()" type="button" class="btn btn-outline-dark">취소</button>
             </div>
         </div>
     </form>

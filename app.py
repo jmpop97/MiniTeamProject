@@ -137,10 +137,8 @@ def matjip_fix():
     }
 
     # 수정
-    print(id_receive)
-    print(id_receive)
+
     db.matjip.update_one({'_id':ObjectId(id_receive)},{'$set': doc})
-    print(id_receive)
     return jsonify({'msg':'저장완료!'})
 
 @app.route('/matgo_list_detail/<id>')
