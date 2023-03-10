@@ -159,7 +159,6 @@
             <!--별점-->
             <div class="input-group mb-3">
                 <label class="input-group-text" for="ststar">별점</label>
-                
                 <select class="form-select" id="ststar" required> 
                     <option selected disabled value="">--선택하기--</option>
                     <option value="1">⭐</option>
@@ -167,7 +166,7 @@
                     <option value="3">⭐⭐⭐</option>
                     <option value="4">⭐⭐⭐⭐</option>
                     <option value="5">⭐⭐⭐⭐⭐</option>
-                    
+                   
                 </select>
             </div>
             <!--코멘트-->
@@ -183,14 +182,12 @@
             </div>
             <!--저장&닫기-->
             <div class="mybtn">
-                <button onclick="save_matjip()" type="submit" class="btn btn-outline-dark">작성</button>
+                <button onclick="fix_matjip()" type="submit" class="btn btn-outline-dark">수정</button>
                 <button onClick="history.back();" type="button" class="btn btn-outline-dark">취소</button>
             </div>
 `
 
                             $('#post-box').append(Res_html)
-
-
                         }
 
 
@@ -291,7 +288,7 @@
             </div>
             <!--저장&닫기-->
             <div class="mybtn">
-                <button onclick="save_matjip()" type="submit" class="btn btn-outline-dark">작성</button>
+                <button onclick="fix_matjip()" type="submit" class="btn btn-outline-dark">수정</button>
                 <button onClick="history.back();" type="button" class="btn btn-outline-dark">취소</button>
             </div>
         </div>
