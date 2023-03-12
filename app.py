@@ -57,10 +57,10 @@ def objectIdDecoder(list):
   return results
 
 
-@app.route('/write')
+@app.route('/matgo/write', methods=["GET"])
 def write():
     return render_template('write.html')
-@app.route("/write", methods=["POST"])
+@app.route("/matgo/write", methods=["POST"])
 def matjip_post():
     url_receive = request.form['url_give']
     #가게이름
@@ -98,7 +98,7 @@ def matjip_post():
 
     return jsonify({'msg':'저장완료!'})
 
-@app.route('/fix/<id>')
+@app.route('/fix/<id>', methods=["GET"])
 def write_fix(id):
     return render_template('fix.html',Resid=id)
 
@@ -141,17 +141,17 @@ def matjip_fix():
     db.matjip.update_one({'_id':ObjectId(id_receive)},{'$set': doc})
     return jsonify({'msg':'저장완료!'})
 
-@app.route('/matgo_list_detail/<id>')
+@app.route('/matgolist-detail/<id>', methods=["GET"])
 def matgo_list_detail(id):
     return render_template('matgo_list_detail.html',Resid=id)
 
-@app.route("/matgo_list_detail/Review", methods=["GET"])
+@app.route("/matgolist-detail/Review", methods=["GET"])
 def Review_get():
     all_review = list(db.Resinfo.find({}))
     return json_util.dumps({'Review': all_review})
     
 
-@app.route('/matgo_list_detail/<id>', methods=["POST"])
+@app.route('/matgolist-detail/<id>', methods=["POST"])
 def matgo_list_detail_post(id):
     id_receive=id['id_give']
     star_receive = request.form['reviewstar_give']
@@ -166,7 +166,7 @@ def matgo_list_detail_post(id):
 
 
 # _id 해당 맛집 지우기
-@app.route('/matgo_list_detail/delete', methods=["DELETE"])
+@app.route('/matgolist-detail/<id>', methods=["DELETE"])
 def delete_post():
     _id_receive = request.form.get('_id_give')
     

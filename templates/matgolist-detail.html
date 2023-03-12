@@ -216,13 +216,13 @@
         let Resid = '{{Resid}}'
         let ResReivew = '{{ResReivew_get}}'
         $(document).ready(function () {
-            matgo_list_detail_get();
+            matgolist_detail_get();
             show_matjip();
         });
         //review데이터 열기
-        function matgo_list_detail_get() {
+        function matgolist_detail_get() {
             $('#Reviewlist').empty()
-            fetch('/matgo_list_detail/Review')
+            fetch('/matgolist-detail/Review')
                 .then((res) => res.json())
                 .then((data) => {
 
@@ -304,7 +304,7 @@
             formData.append("reviewstar_give", reviewstar);
             formData.append("review_comment_give", review_comment);
 
-            fetch('/matgo_list_detail/{{Resid}}', { method: "POST", body: formData, })
+            fetch('/matgolist-detail/{{Resid}}', { method: "POST", body: formData, })
                 .then((res) => res.json())
                 .then((data) => {
                     window.location.reload()
@@ -317,7 +317,7 @@
             console.log(Resid)
             let formData = new FormData();
             formData.append("_id_give", _id);
-            fetch('/matgo_list_detail/delete', { method: "DELETE", body: formData }).then((res) => res.json()).then((data) => {
+            fetch('/matgolist-detail/{{Resid}}', { method: "DELETE", body: formData }).then((res) => res.json()).then((data) => {
                 alert(data['msg'])
             })
         }//별점 마킹 모듈 프로토타입으로 생성
